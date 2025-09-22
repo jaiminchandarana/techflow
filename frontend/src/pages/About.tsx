@@ -15,22 +15,42 @@ const About = () => {
     {
       icon: <Target className="h-8 w-8 text-blue-600" />,
       title: 'Excellence Driven',
-      description: 'We pursue perfection in every project, ensuring our solutions exceed client expectations and industry standards.'
+      description: 'We pursue perfection in every project, ensuring our solutions exceed client expectations and industry standards.',
+      subcards: [
+        { title: 'Quality Assurance', description: 'Rigorous testing and code review processes' },
+        { title: 'Best Practices', description: 'Following industry standards and modern methodologies' },
+        { title: 'Continuous Improvement', description: 'Always learning and upgrading our skills' }
+      ]
     },
     {
       icon: <Users className="h-8 w-8 text-teal-600" />,
       title: 'Client-Centric',
-      description: 'Your success is our success. We partner with you to understand your unique challenges and deliver tailored solutions.'
+      description: 'Your success is our success. We partner with you to understand your unique challenges and deliver tailored solutions.',
+      subcards: [
+        { title: 'Personal Attention', description: 'Direct access to founder and personalized service' },
+        { title: 'Custom Solutions', description: 'Tailored approaches for your specific business needs' },
+        { title: 'Long-term Partnership', description: 'Building relationships that grow with your business' }
+      ]
     },
     {
       icon: <Award className="h-8 w-8 text-orange-600" />,
       title: 'Innovation First',
-      description: 'We stay at the forefront of technology, bringing cutting-edge solutions that give you competitive advantages.'
+      description: 'We stay at the forefront of technology, bringing cutting-edge solutions that give you competitive advantages.',
+      subcards: [
+        { title: 'Latest Technologies', description: 'Using modern frameworks and tools' },
+        { title: 'Creative Solutions', description: 'Thinking outside the box for unique challenges' },
+        { title: 'Future-Ready', description: 'Building scalable solutions for tomorrow' }
+      ]
     },
     {
       icon: <Heart className="h-8 w-8 text-red-600" />,
       title: 'Integrity & Trust',
-      description: 'We build lasting relationships through transparent communication, reliable delivery, and ethical business practices.'
+      description: 'We build lasting relationships through transparent communication, reliable delivery, and ethical business practices.',
+      subcards: [
+        { title: 'Transparent Pricing', description: 'No hidden costs or surprise fees' },
+        { title: 'Reliable Delivery', description: 'Meeting deadlines and maintaining quality' },
+        { title: 'Ethical Practices', description: 'Honest communication and fair business dealings' }
+      ]
     }
   ];
 
@@ -51,24 +71,55 @@ const About = () => {
       {/* Mission & Vision */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
-              <p className="text-lg text-gray-700 mb-6">
-                To democratize access to modern technology solutions by providing high-quality, affordable IT services that help businesses grow and compete in the digital landscape.
-              </p>
-              <p className="text-lg text-gray-700">
-                As a startup, we understand the challenges of growing businesses and are committed to providing personalized service with cutting-edge solutions that deliver real value.
-              </p>
+          <div className="grid md:grid-cols-2 gap-16">
+            {/* Mission Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="mb-8 pb-6 border-b border-gray-100">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Mission</h2>
+                <p className="text-lg text-gray-700">
+                  To democratize access to modern technology solutions by providing high-quality, affordable IT services that help businesses grow and compete in the digital landscape.
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Accessibility</h4>
+                  <p className="text-sm text-gray-600">Making advanced technology affordable for all business sizes</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Quality Service</h4>
+                  <p className="text-sm text-gray-600">Delivering high-quality solutions with personalized attention</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Business Growth</h4>
+                  <p className="text-sm text-gray-600">Helping businesses compete and thrive in the digital age</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Vision</h2>
-              <p className="text-lg text-gray-700 mb-6">
-                To become the go-to technology partner for startups and growing businesses, known for innovation, reliability, and exceptional client relationships.
-              </p>
-              <p className="text-lg text-gray-700">
-                We envision building long-term partnerships with our clients, growing together as we help them leverage technology to achieve their business goals and scale successfully.
-              </p>
+
+            {/* Vision Card */}
+            <div className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="mb-8 pb-6 border-b border-gray-100">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">Our Vision</h2>
+                <p className="text-lg text-gray-700">
+                  To become the go-to technology partner for startups and growing businesses, known for innovation, reliability, and exceptional client relationships.
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Partnership Focus</h4>
+                  <p className="text-sm text-gray-600">Building long-term partnerships with our clients</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Innovation Leadership</h4>
+                  <p className="text-sm text-gray-600">Being recognized for cutting-edge solutions and reliability</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Mutual Growth</h4>
+                  <p className="text-sm text-gray-600">Growing together as we help clients scale successfully</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -82,14 +133,35 @@ const About = () => {
             <p className="text-xl text-gray-600">The principles that guide everything we do</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
             {values.map((value, index) => (
-              <div key={index} className="text-center group cursor-pointer">
-                <div className="bg-white rounded-full p-4 inline-block mb-6 shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-300/30 transition-all duration-300 transform group-hover:scale-110 group-hover:bg-gradient-to-br group-hover:from-blue-50 group-hover:to-teal-50">
-                  {value.icon}
+              <div key={index} className="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group">
+                {/* Value Header */}
+                <div className="mb-8 pb-6 border-b border-gray-100">
+                  <div className="bg-gray-50 rounded-full p-4 inline-block mb-6 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">{value.title}</h3>
-                <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">{value.description}</p>
+                
+                {/* Value Subcards */}
+                <div className="space-y-3">
+                  {value.subcards.map((subcard, idx) => (
+                    <div key={idx} className="bg-gray-50 rounded-xl p-4 hover:bg-gray-100 hover:border-gray-200 border border-transparent transition-all duration-300 group/subcard cursor-pointer">
+                      <h4 className="font-semibold text-gray-900 group-hover/subcard:text-blue-600 transition-colors duration-300 mb-1">
+                        {subcard.title}
+                      </h4>
+                      <p className="text-sm text-gray-600 group-hover/subcard:text-gray-700 transition-colors duration-300">
+                        {subcard.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -107,7 +179,7 @@ const About = () => {
           <div className="flex justify-center">
             <div className="max-w-sm">
             {team.map((member, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+              <div key={index} className="bg-white rounded-2xl shadow-xl p-8 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <img
                   src={member.image}
                   alt={member.name}
@@ -140,21 +212,33 @@ const About = () => {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
-              <div className="text-center mb-8">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 hover:shadow-2xl transition-all duration-300">
+              <div className="mb-8 pb-6 border-b border-gray-100">
                 <div className="text-6xl font-bold text-blue-600 mb-4">2025</div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">The Beginning</h3>
               </div>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Foundation</h4>
+                  <p className="text-sm text-gray-600">Born from passion for technology and business growth</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Expertise</h4>
+                  <p className="text-sm text-gray-600">Years of experience in development, AI, and analytics</p>
+                </div>
+                <div className="bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 mb-2">Vision</h4>
+                  <p className="text-sm text-gray-600">Growing alongside clients and building partnerships</p>
+                </div>
+              </div>
+              
               <div className="prose prose-lg mx-auto text-gray-700">
-                <p className="text-center mb-6">
+                <p className="mb-6">
                   TechFlow was born from a passion for technology and a desire to help businesses thrive in the digital age. 
                   As a fresh startup, we bring enthusiasm, modern expertise, and a commitment to excellence that sets us apart.
                 </p>
-                <p className="text-center mb-6">
-                  While we're just starting our journey, our founder brings years of experience in full-stack development, 
-                  AI, and data analytics. We're excited to grow alongside our clients and build lasting partnerships.
-                </p>
-                <p className="text-center">
+                <p>
                   Every great company starts with a single step. This is ours, and we're thrilled to have you be part of our story.
                 </p>
               </div>
