@@ -16,14 +16,14 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -74,39 +74,45 @@ const Contact = () => {
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8 text-center">
-          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Thank You!</h2>
-          <p className="text-gray-600 mb-6">
-            We've received your message and will get back to you within 24 hours. 
-            In the meantime, feel free to explore our services or check out our case studies.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href="/services"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
-            >
-              View Services
-            </a>
-            <button
-              onClick={() => {
-                setIsSubmitted(false);
-                setFormData({
-                  name: '',
-                  email: '',
-                  company: '',
-                  phone: '',
-                  service: '',
-                  message: '',
-                  budget: '',
-                  timeline: '',
-                  description: ''
-                });
-              }}
-              className="bg-gray-100 hover:bg-gray-200 text-gray-900 px-6 py-2 rounded-lg font-medium transition-colors duration-200"
-            >
-              Send Another Message
-            </button>
+        <div className="max-w-md w-full">
+          <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
+            <div className="bg-green-100 rounded-full p-4 inline-block mb-6">
+              <CheckCircle className="h-16 w-16 text-green-500" />
+            </div>
+            <div className="bg-gray-50 rounded-xl p-6 mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Thank You!</h2>
+              <p className="text-gray-600">
+                We've received your message and will get back to you within 24 hours. 
+                In the meantime, feel free to explore our services or check out our case studies.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="/services"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+              >
+                View Services
+              </a>
+              <button
+                onClick={() => {
+                  setIsSubmitted(false);
+                  setFormData({
+                    name: '',
+                    email: '',
+                    company: '',
+                    phone: '',
+                    service: '',
+                    message: '',
+                    budget: '',
+                    timeline: '',
+                    description: ''
+                  });
+                }}
+                className="bg-gray-100 hover:bg-gray-200 text-gray-900 px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+              >
+                Send Another Message
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -115,14 +121,19 @@ const Contact = () => {
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section with Card Design */}
       <section className="bg-gradient-to-br from-blue-50 to-teal-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">Get in Touch</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your business with intelligent technology? We'd love to hear about your project and discuss how we can help you achieve your goals.
-            </p>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                <h1 className="text-5xl font-bold mb-6">Get in Touch</h1>
+              </div>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8 rounded-full"></div>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Ready to transform your business with intelligent technology? We'd love to hear about your project and discuss how we can help you achieve your goals.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -134,74 +145,100 @@ const Contact = () => {
             
             {/* Contact Information */}
             <div className="lg:col-span-1">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8">Let's Start a Conversation</h2>
-              <p className="text-gray-600 mb-8">
-                Whether you're looking to build a new solution, optimize existing systems, or explore AI opportunities, we're here to help. Get in touch and let's discuss your vision.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <Phone className="h-6 w-6 text-blue-600 mr-4 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Phone</h3>
-                    <p className="text-gray-600">+91 74908 24904</p>
-                    <p className="text-sm text-gray-500">Mon-Fri 9AM-6PM IST</p>
-                  </div>
+              <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
+                <div className="bg-white rounded-xl p-6 mb-6">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">Let's Start a Conversation</h2>
+                  <p className="text-gray-600">
+                    Whether you're looking to build a new solution, optimize existing systems, or explore AI opportunities, we're here to help. Get in touch and let's discuss your vision.
+                  </p>
                 </div>
                 
-                <div className="flex items-start">
-                  <Mail className="h-6 w-6 text-blue-600 mr-4 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-600">chandaranajaimin@gmail.com</p>
-                    <p className="text-sm text-gray-500">We respond within 24 hours</p>
+                <div className="space-y-4">
+                  <div className="bg-white rounded-xl p-4 hover:shadow-md transition-all duration-300 border-l-4 border-blue-600">
+                    <div className="flex items-start">
+                      <div className="bg-blue-100 rounded-full p-2 mr-4 mt-1">
+                        <Phone className="h-5 w-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Phone</h3>
+                        <p className="text-gray-600">+91 74908 24904</p>
+                        <p className="text-sm text-gray-500">Mon-Fri 9AM-6PM IST</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-4 hover:shadow-md transition-all duration-300 border-l-4 border-teal-600">
+                    <div className="flex items-start">
+                      <div className="bg-teal-100 rounded-full p-2 mr-4 mt-1">
+                        <Mail className="h-5 w-5 text-teal-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Email</h3>
+                        <p className="text-gray-600">chandaranajaimin@gmail.com</p>
+                        <p className="text-sm text-gray-500">We respond within 24 hours</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-4 hover:shadow-md transition-all duration-300 border-l-4 border-orange-600">
+                    <div className="flex items-start">
+                      <div className="bg-orange-100 rounded-full p-2 mr-4 mt-1">
+                        <MapPin className="h-5 w-5 text-orange-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Office</h3>
+                        <p className="text-gray-600">We are fully remote.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-4 hover:shadow-md transition-all duration-300 border-l-4 border-green-600">
+                    <div className="flex items-start">
+                      <div className="bg-green-100 rounded-full p-2 mr-4 mt-1">
+                        <Clock className="h-5 w-5 text-green-600" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Business Hours</h3>
+                        <p className="text-gray-600">
+                          Monday - Friday: 9:00 AM - 6:00 PM IST<br />
+                          Saturday - Sunday: Closed
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="flex items-start">
-                  <MapPin className="h-6 w-6 text-blue-600 mr-4 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Office</h3>
-                    <p className="text-gray-600">We are fully remote.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <Clock className="h-6 w-6 text-blue-600 mr-4 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Business Hours</h3>
-                    <p className="text-gray-600">
-                      Monday - Friday: 9:00 AM - 6:00 PM<br />
-                      Saturday - Sunday: Closed
-                    </p>
-                  </div>
-                </div>
-              </div>
 
-              {/* Quick Actions */}
-              <div className="mt-8 p-6 bg-blue-50 rounded-lg">
-                <h3 className="font-semibold text-gray-900 mb-4">Need Immediate Help?</h3>
-                <div className="space-y-3">
-                  <a
-                    href="tel:+917490824904"
-                    className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-center transition-colors duration-200"
-                  >
-                    Call Now
-                  </a>
-                  <a
-                    href="mailto:chandaranajaimin@gmail.com"
-                    className="block bg-white hover:bg-gray-50 text-blue-600 border border-blue-600 px-4 py-2 rounded-lg font-medium text-center transition-colors duration-200"
-                  >
-                    Send Email
-                  </a>
+                {/* Quick Actions Card */}
+                <div className="mt-8 bg-white rounded-xl p-6 shadow-md">
+                  <h3 className="font-semibold text-gray-900 mb-4 text-center">Need Immediate Help?</h3>
+                  <div className="space-y-3">
+                    <a
+                      href="tel:+917490824904"
+                      className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg font-medium text-center transition-colors duration-200 shadow-md hover:shadow-lg"
+                    >
+                      <Phone className="inline h-4 w-4 mr-2" />
+                      Call Now
+                    </a>
+                    <a
+                      href="mailto:chandaranajaimin@gmail.com"
+                      className="block bg-white hover:bg-gray-50 text-blue-600 border border-blue-600 px-4 py-3 rounded-lg font-medium text-center transition-colors duration-200 shadow-md hover:shadow-lg"
+                    >
+                      <Mail className="inline h-4 w-4 mr-2" />
+                      Send Email
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-gray-50 rounded-xl p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Request a Free Consultation</h2>
+              <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-xl p-8">
+                <div className="bg-white rounded-xl p-6 mb-6">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">Request a Free Consultation</h2>
+                  <p className="text-gray-600">Fill out the form below and we'll get back to you within 24 hours</p>
+                </div>
+                
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
@@ -215,7 +252,7 @@ const Contact = () => {
                         required
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                         placeholder="Rohit Pujara"
                       />
                     </div>
@@ -231,7 +268,7 @@ const Contact = () => {
                         required
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                         placeholder="rohit@company.com"
                       />
                     </div>
@@ -248,7 +285,7 @@ const Contact = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                         placeholder="Your Company"
                       />
                     </div>
@@ -263,7 +300,7 @@ const Contact = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                         placeholder="+91 74908 24904"
                       />
                     </div>
@@ -280,7 +317,7 @@ const Contact = () => {
                         required
                         value={formData.service}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                       >
                         <option value="">Select a service</option>
                         {services.map(service => (
@@ -298,7 +335,7 @@ const Contact = () => {
                         name="budget"
                         value={formData.budget}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                       >
                         <option value="">Select budget</option>
                         {budgetRanges.map(range => (
@@ -316,7 +353,7 @@ const Contact = () => {
                         name="timeline"
                         value={formData.timeline}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white"
                       >
                         <option value="">Select timeline</option>
                         {timelines.map(time => (
@@ -337,7 +374,7 @@ const Contact = () => {
                       rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none bg-white"
                       placeholder="Tell us about your project, challenges, and goals. The more details you provide, the better we can understand your needs and provide accurate recommendations."
                     />
                   </div>
@@ -352,27 +389,29 @@ const Contact = () => {
                       rows={3}
                       value={formData.description}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none bg-white"
                       placeholder="Any additional information about your project requirements, timeline, or specific needs..."
                     />
                   </div>
 
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="consent"
-                      required
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                    />
-                    <label htmlFor="consent" className="ml-2 block text-sm text-gray-700">
-                      I agree to receive communications from TechFlow and understand that I can unsubscribe at any time. *
-                    </label>
+                  <div className="bg-white rounded-lg p-4">
+                    <div className="flex items-start">
+                      <input
+                        type="checkbox"
+                        id="consent"
+                        required
+                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded mt-1"
+                      />
+                      <label htmlFor="consent" className="ml-3 block text-sm text-gray-700">
+                        I agree to receive communications from TechFlow and understand that I can unsubscribe at any time. *
+                      </label>
+                    </div>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none flex items-center justify-center"
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none flex items-center justify-center shadow-md hover:shadow-lg"
                   >
                     {isSubmitting ? (
                       <>
@@ -388,9 +427,11 @@ const Contact = () => {
                   </button>
                 </form>
                 
-                <p className="text-sm text-gray-500 mt-4 text-center">
-                  By submitting this form, you agree to our Privacy Policy and Terms of Service.
-                </p>
+                <div className="bg-white rounded-lg p-4 mt-4">
+                  <p className="text-sm text-gray-500 text-center">
+                    By submitting this form, you agree to our Privacy Policy and Terms of Service.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -401,11 +442,13 @@ const Contact = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-            <p className="text-xl text-gray-600">Quick answers to common questions</p>
+            <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <p className="text-xl text-gray-600">Quick answers to common questions</p>
+            </div>
           </div>
           
-          <div className="space-y-8">
+          <div className="space-y-6">
             {[
               {
                 question: "How long does a typical project take?",
@@ -417,7 +460,7 @@ const Contact = () => {
               },
               {
                 question: "What is your pricing structure?",
-                answer: "Our pricing varies by service and project complexity. We offer both fixed-price projects and monthly retainer models. All projects start with a free consultation where we'll provide a detailed proposal with transparent pricing."
+                answer: "Our pricing varies by service and project complexity. We offer both fixed-price projects and hourly rates. All projects start with a free consultation where we'll provide a detailed proposal with transparent pricing."
               },
               {
                 question: "Do you work with startups or only enterprise clients?",
@@ -428,9 +471,13 @@ const Contact = () => {
                 answer: "We specialize in modern web technologies (React, Node.js, Python), cloud platforms (AWS, Azure, GCP), AI/ML frameworks (TensorFlow, PyTorch), and data tools (Tableau, Power BI, Snowflake). We stay current with the latest industry trends and technologies."
               }
             ].map((faq, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 shadow-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
+              <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                <div className="bg-gradient-to-r from-blue-50 to-teal-50 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                </div>
+                <div className="p-6 pt-4">
+                  <p className="text-gray-600">{faq.answer}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -438,19 +485,21 @@ const Contact = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600 text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-xl mb-8">
-            Schedule a free consultation and let's discuss how we can help transform your business
-          </p>
-          <a
-            href="tel:+917490824904"
-            className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 inline-flex items-center"
-          >
-            <Phone className="mr-2 h-5 w-5" />
-            Call Now: +91 74908 24904
-          </a>
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 md:p-12 text-center">
+            <h2 className="text-4xl font-bold mb-4 text-white">Ready to Get Started?</h2>
+            <p className="text-xl mb-8 text-blue-100">
+              Schedule a free consultation and let's discuss how we can help transform your business
+            </p>
+            <a
+              href="tel:+917490824904"
+              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 inline-flex items-center shadow-lg hover:shadow-xl"
+            >
+              <Phone className="mr-2 h-5 w-5" />
+              Call Now: +91 74908 24904
+            </a>
+          </div>
         </div>
       </section>
     </div>
