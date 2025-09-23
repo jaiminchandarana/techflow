@@ -137,9 +137,6 @@ const Careers = () => {
                     <Send className="mr-2 h-5 w-5" />
                     Apply Now
                   </button>
-                  <button className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg">
-                    View Open Positions
-                  </button>
                 </div>
               </div>
             </div>
