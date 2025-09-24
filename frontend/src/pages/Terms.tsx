@@ -4,16 +4,23 @@ import { FileText, Scale, Shield, AlertTriangle, Mail, Phone } from 'lucide-reac
 const Terms = () => {
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section with Card Design */}
       <section className="bg-gradient-to-br from-blue-50 to-teal-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Scale className="h-16 w-16 text-blue-600 mx-auto mb-6" />
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">Terms of Service</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              These terms govern your use of our services. Please read them carefully before using our platform.
-            </p>
-            <p className="text-sm text-gray-500 mt-4">Last updated: January 2025</p>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="flex items-center justify-center mb-6">
+                <Scale className="h-12 w-12 text-blue-600 mr-4" />
+                <div className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
+                  <h1 className="text-5xl font-bold">Terms of Service</h1>
+                </div>
+              </div>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-8 rounded-full"></div>
+              <p className="text-xl text-gray-600 leading-relaxed mb-4">
+                These terms govern your use of our services. Please read them carefully before engaging with our technology solutions.
+              </p>
+              <p className="text-sm text-gray-500">Last updated: January 2025</p>
+            </div>
           </div>
         </div>
       </section>

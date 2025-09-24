@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Eye, Lock, Users, Mail, Phone } from 'lucide-react';
+import { RefreshCw, Shield, Eye, Lock, Users, Mail, Phone } from 'lucide-react';
 
 const Privacy = () => {
   return (
@@ -7,13 +7,20 @@ const Privacy = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-teal-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Shield className="h-16 w-16 text-blue-600 mx-auto mb-6" />
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Your privacy is important to us. This policy explains how we collect, use, and protect your personal information.
-            </p>
-            <p className="text-sm text-gray-500 mt-4">Last updated: January 2025</p>
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 text-center hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+              <div className="flex items-center justify-center mb-6">
+                <RefreshCw className="h-12 w-12 text-blue-600 mr-4" />
+                <div className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent pb-2">
+                  <h1 className="text-5xl font-bold">Privacy Policy</h1>
+                </div>
+              </div>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-teal-600 mx-auto mb-6 rounded-full"></div>
+              <p className="text-xl text-gray-600 leading-relaxed mb-2">
+                We stand behind our work and want you to be completely satisfied. Here's our comprehensive refund policy.
+              </p>
+              <p className="text-sm text-gray-500">Last updated: January 2025</p>
+            </div>
           </div>
         </div>
       </section>
@@ -274,34 +281,30 @@ const Privacy = () => {
           {/* Additional Policies Card */}
           <div className="bg-white rounded-xl shadow-lg p-8 mb-8 hover:shadow-xl transition-shadow duration-300">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Additional Privacy Information</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="bg-purple-50 rounded-lg p-6 border-l-4 border-purple-600">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Data Retention</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    We retain your personal information only for as long as necessary to fulfill the purposes outlined in this policy, comply with legal obligations, resolve disputes, and enforce our agreements.
-                  </p>
-                </div>
-                <div className="bg-indigo-50 rounded-lg p-6 border-l-4 border-indigo-600">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Third-Party Links</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of these external sites.
-                  </p>
-                </div>
+            <div className="grid md:grid-cols-2 md:grid-rows-2 gap-6 md:h-96">
+              <div className="bg-purple-50 rounded-lg p-6 border-l-4 border-purple-600 flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Data Retention</h3>
+                <p className="text-gray-700 leading-relaxed flex-1">
+                  We retain your personal information only for as long as necessary to fulfill the purposes outlined in this policy, comply with legal obligations, resolve disputes, and enforce our agreements.
+                </p>
               </div>
-              <div className="space-y-6">
-                <div className="bg-pink-50 rounded-lg p-6 border-l-4 border-pink-600">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Children's Privacy</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Our services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13.
-                  </p>
-                </div>
-                <div className="bg-cyan-50 rounded-lg p-6 border-l-4 border-cyan-600">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">International Transfers</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Your information may be transferred to and processed in countries other than your own with appropriate safeguards in place.
-                  </p>
-                </div>
+              <div className="bg-pink-50 rounded-lg p-6 border-l-4 border-pink-600 flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Children's Privacy</h3>
+                <p className="text-gray-700 leading-relaxed flex-1">
+                  Our services are not intended for children under the age of 13. We do not knowingly collect personal information from children under 13.
+                </p>
+              </div>
+              <div className="bg-indigo-50 rounded-lg p-6 border-l-4 border-indigo-600 flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Third-Party Links</h3>
+                <p className="text-gray-700 leading-relaxed flex-1">
+                  Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of these external sites.
+                </p>
+              </div>
+              <div className="bg-cyan-50 rounded-lg p-6 border-l-4 border-cyan-600 flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">International Transfers</h3>
+                <p className="text-gray-700 leading-relaxed flex-1">
+                  Your information may be transferred to and processed in countries other than your own with appropriate safeguards in place.
+                </p>
               </div>
             </div>
           </div>

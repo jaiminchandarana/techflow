@@ -429,7 +429,14 @@ const Contact = () => {
                 
                 <div className="bg-white rounded-lg p-4 mt-4">
                   <p className="text-sm text-gray-500 text-center">
-                    By submitting this form, you agree to our Privacy Policy and Terms of Service.
+                    By submitting this form, you agree to our{' '}
+                    <a href="/privacy" className="text-blue-600 hover:text-blue-800 underline">
+                      Privacy Policy
+                    </a>{' '}
+                    and{' '}
+                    <a href="/terms" className="text-blue-600 hover:text-blue-800 underline">
+                      Terms of Service
+                    </a>.
                   </p>
                 </div>
               </div>
