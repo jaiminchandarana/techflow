@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Clock, DollarSign, Users, Code, Zap, Send, CheckCircle, FileText, Briefcase, Star, Award, TrendingUp, Heart } from 'lucide-react';
+import { Link, MapPin, Clock, DollarSign, Users, Code, Zap, Send, CheckCircle, FileText, Briefcase, Star, Award, TrendingUp, Heart } from 'lucide-react';
 import JobModal from '../components/JobModal';
 import ApplicationModal from '../components/ApplicationModal';
 
@@ -247,7 +247,7 @@ const Careers = () => {
         <section className="py-20 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <div className="bg-white rounded-2xl p-8 shadow-lg mb-8">
+              <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 mb-8">
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose TechFlow?</h2>
                 <p className="text-xl text-gray-600">Amazing perks and benefits that make a difference</p>
               </div>
@@ -326,9 +326,9 @@ const Careers = () => {
                     Apply Now
                     <Send className="ml-2 h-5 w-5" />
                   </button>
-                  <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105">
+                  {/* <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105">
                     Learn More About Us
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

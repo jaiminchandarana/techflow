@@ -89,7 +89,7 @@ const Refund = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="w-2 h-2 bg-black rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span><strong>After delivery:</strong> No refund, but 60 days of free support</span>
+                    <span><strong>After delivery:</strong> No refund, but 30 days of free support</span>
                   </li>
                 </ul>
               </div>
@@ -116,7 +116,7 @@ const Refund = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="w-2 h-2 bg-black rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span><strong>Deployment phase (90%+):</strong> No refund, but 60 days of free support</span>
+                    <span><strong>Deployment phase (90%+):</strong> No refund, but 30 days of free support</span>
                   </li>
                 </ul>
               </div>
@@ -153,7 +153,7 @@ const Refund = () => {
                   </li>
                   <li className="flex items-start">
                     <span className="w-2 h-2 bg-black rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                    <span><strong>After launch:</strong> No refund, but 90 days of free bug fixes</span>
+                    <span><strong>After launch:</strong> No refund, but 50 days of free bug fixes</span>
                   </li>
                 </ul>
               </div>

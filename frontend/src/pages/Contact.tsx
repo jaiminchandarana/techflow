@@ -446,10 +446,10 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+            <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 mb-8">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
               <p className="text-xl text-gray-600">Quick answers to common questions</p>
             </div>
@@ -459,7 +459,7 @@ const Contact = () => {
             {[
               {
                 question: "How long does a typical project take?",
-                answer: "Project timelines vary depending on complexity and scope. Simple websites typically take 4-8 weeks, while complex AI or data analytics projects may take 3-6 months. We'll provide a detailed timeline during our initial consultation."
+                answer: "Project timelines vary depending on complexity and scope. Simple websites typically take 4-8 weeks, while complex AI or data analytics projects may take 3-4 months. We'll provide a detailed timeline during our initial consultation."
               },
               {
                 question: "Do you offer ongoing support and maintenance?",

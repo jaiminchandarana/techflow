@@ -144,7 +144,7 @@ const About = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+            <div className="bg-gradient-to-r from-blue-50 to-teal-50 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Core Values</h2>
               <p className="text-xl text-gray-600">The principles that guide everything we do</p>
             </div>
@@ -232,7 +232,7 @@ const About = () => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+            <div className="bg-gradient-to-r from-blue-50 to-teal-50 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Story</h2>
               <p className="text-xl text-gray-600">The beginning of an exciting journey</p>
             </div>
