@@ -1,8 +1,31 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader } from 'lucide-react';
+
+interface FormData {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  service: string;
+  message: string;
+  budget: string;
+  timeline: string;
+  description: string;
+}
+
+interface ApiResponse {
+  success: boolean;
+  inquiry_id?: string;
+  message: string;
+  error?: string;
+  details?: {
+    client_email_sent: boolean;
+    admin_email_sent: boolean;
+  };
+}
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     company: '',
@@ -13,19 +36,56 @@ const Contact = () => {
     timeline: '',
     description: ''
   });
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string>('');
+  const [inquiryId, setInquiryId] = useState<string>('');
 
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear any previous errors when user starts typing
+    if (submitError) {
+      setSubmitError('');
+    }
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const validateForm = (): boolean => {
+    if (!formData.name.trim()) {
+      setSubmitError('Please enter your full name');
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setSubmitError('Please enter your email address');
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setSubmitError('Please enter a valid email address');
+      return false;
+    }
+    if (!formData.service) {
+      setSubmitError('Please select a service you\'re interested in');
+      return false;
+    }
+    if (!formData.message.trim()) {
+      setSubmitError('Please describe your project requirements');
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
+    setSubmitError('');
     
     try {
       const response = await fetch('https://jaiminchandaranaportfolio.vercel.app/consultation', {
@@ -36,17 +96,50 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      const result: ApiResponse = await response.json();
+
+      if (response.ok && result.success) {
         setIsSubmitted(true);
+        setInquiryId(result.inquiry_id || '');
+        
+        // Optional: Track successful submissions
+        if (window.gtag) {
+          window.gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: formData.service,
+            value: 1
+          });
+        }
       } else {
-        throw new Error('Failed to send message');
+        throw new Error(result.message || result.error || 'Failed to send message');
       }
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('Failed to send message. Please try again.');
+      setSubmitError(
+        error instanceof Error 
+          ? error.message 
+          : 'Failed to send message. Please try again or contact us directly.'
+      );
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setIsSubmitted(false);
+    setSubmitError('');
+    setInquiryId('');
+    setFormData({
+      name: '',
+      email: '',
+      company: '',
+      phone: '',
+      service: '',
+      message: '',
+      budget: '',
+      timeline: '',
+      description: ''
+    });
   };
 
   const services = [
@@ -74,41 +167,44 @@ const Contact = () => {
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-teal-50 flex items-center justify-center px-4">
-        <div className="max-w-md w-full">
+        <div className="max-w-lg w-full">
           <div className="bg-white rounded-2xl shadow-xl p-8 text-center">
             <div className="bg-green-100 rounded-full p-4 inline-block mb-6">
               <CheckCircle className="h-16 w-16 text-green-500" />
             </div>
             <div className="bg-gray-50 rounded-xl p-6 mb-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Thank You!</h2>
+              {inquiryId && (
+                <div className="bg-blue-50 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-blue-800 font-medium">Your Inquiry ID</p>
+                  <p className="text-lg font-bold text-blue-900">{inquiryId}</p>
+                  <p className="text-xs text-blue-600 mt-1">Please save this ID for your records</p>
+                </div>
+              )}
               <p className="text-gray-600">
-                We've received your message and will get back to you within 24 hours. 
-                In the meantime, feel free to explore our services or check out our case studies.
+                We've received your message and sent you a confirmation email. Our team will get back to you within 24 hours with a detailed response.
               </p>
+            </div>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center justify-center text-green-600 bg-green-50 p-3 rounded-lg">
+                <CheckCircle className="h-5 w-5 mr-2" />
+                <span className="text-sm">Confirmation email sent to your inbox</span>
+              </div>
+              <div className="flex items-center justify-center text-blue-600 bg-blue-50 p-3 rounded-lg">
+                <Mail className="h-5 w-5 mr-2" />
+                <span className="text-sm">Our team has been notified</span>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
               <a
                 href="/services"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
               >
-                View Services
+                View Our Services
               </a>
               <button
-                onClick={() => {
-                  setIsSubmitted(false);
-                  setFormData({
-                    name: '',
-                    email: '',
-                    company: '',
-                    phone: '',
-                    service: '',
-                    message: '',
-                    budget: '',
-                    timeline: '',
-                    description: ''
-                  });
-                }}
-                className="bg-gray-100 hover:bg-gray-200 text-gray-900 px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+                onClick={resetForm}
+                className="bg-gray-100 hover:bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-medium transition-colors duration-200"
               >
                 Send Another Message
               </button>
@@ -238,6 +334,16 @@ const Contact = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">Request a Free Consultation</h2>
                   <p className="text-gray-600">Fill out the form below and we'll get back to you within 24 hours</p>
                 </div>
+                
+                {/* Error Display */}
+                {submitError && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                    <div className="flex items-center">
+                      <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
+                      <p className="text-red-700 font-medium">{submitError}</p>
+                    </div>
+                  </div>
+                )}
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
@@ -411,11 +517,11 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none flex items-center justify-center shadow-md hover:shadow-lg"
+                    className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 disabled:transform-none flex items-center justify-center shadow-md hover:shadow-lg disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        <Loader className="animate-spin h-5 w-5 mr-2" />
                         Sending...
                       </>
                     ) : (
@@ -446,7 +552,7 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 mb-8">
@@ -512,5 +618,12 @@ const Contact = () => {
     </div>
   );
 };
+
+// Extend window interface for gtag (Google Analytics)
+declare global {
+  interface Window {
+    gtag?: (command: string, targetId: string, config?: any) => void;
+  }
+}
 
 export default Contact;
