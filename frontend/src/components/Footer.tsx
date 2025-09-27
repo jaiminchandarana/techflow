@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin} from 'lucide-react';
 import { useState } from 'react';
-import logo from '../assets/techflow-logo.png'
+import logo from '../assets/techflow-logo.png';
 
 const Footer = () => {
   const [email, setEmail] = useState('');

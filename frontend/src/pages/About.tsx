@@ -1,5 +1,5 @@
 import { Users, Award, Target, Heart, Linkedin, Mail } from 'lucide-react';
-import ceoProfile from '../assets/jaiminchandarana.png'
+import ceoProfile from '../assets/jaiminchandarana.png';
 
 const About = () => {
   const team = [
