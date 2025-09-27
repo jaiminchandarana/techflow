@@ -31,7 +31,7 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img 
-                src={logo} 
+                src={logo}
                 alt="TechFlow - IT Solutions Company" 
                 className="h-10 w-auto"
               />
