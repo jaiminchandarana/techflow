@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MapPin, Clock, DollarSign, Users, Code, Zap, Send, CheckCircle, FileText, X } from 'lucide-react';
+import React, {} from 'react';
+import { MapPin, Clock, DollarSign, Code, Send, X } from 'lucide-react';
 
 interface JobModalProps {
   isOpen: boolean;

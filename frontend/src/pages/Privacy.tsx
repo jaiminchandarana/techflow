@@ -1,5 +1,4 @@
-import React from 'react';
-import { RefreshCw, Shield, Eye, Lock, Users, Mail, Phone } from 'lucide-react';
+import { RefreshCw, Eye, Lock, Users, Mail, Phone } from 'lucide-react';
 
 const Privacy = () => {
   return (

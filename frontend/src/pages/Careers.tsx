@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, MapPin, Clock, DollarSign, Users, Code, Zap, Send, CheckCircle, FileText, Briefcase, Star, Award, TrendingUp, Heart } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Clock, DollarSign, Users, Code, Zap, Send, Briefcase, Star, Award, TrendingUp, Heart } from 'lucide-react';
 import JobModal from '../components/JobModal';
 import ApplicationModal from '../components/ApplicationModal';
 

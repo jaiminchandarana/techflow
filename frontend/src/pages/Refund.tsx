@@ -1,4 +1,3 @@
-import React from 'react';
 import { RefreshCw, Clock, CreditCard, AlertCircle, Mail, Phone, CheckCircle } from 'lucide-react';
 
 const Refund = () => {

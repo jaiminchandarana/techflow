@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, ArrowRight, Star, BarChart3, Brain, Code, Zap, Shield, Users, Send} from 'lucide-react';
+import { ArrowRight, Star, BarChart3, Brain, Code, Zap, Shield, Users, Send} from 'lucide-react';
 
 const Services = () => {
-  const [activeService, setActiveService] = useState('data-analytics');
+  const [activeService] = useState('data-analytics');
 
   const services = {
     'data-analytics': {
