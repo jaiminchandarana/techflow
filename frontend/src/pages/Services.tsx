@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Star, BarChart3, Brain, Code, Zap, Shield, Users, Send} from 'lucide-react';
+import { Star, BarChart3, Brain, Code, Zap, Shield, Users, Send} from 'lucide-react';
 
 const Services = () => {
   // Removed unused activeService state and currentService variable
@@ -469,26 +469,27 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600 text-white">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-4">Ready to Transform Your Business?</h2>
-          <p className="text-xl mb-8">
-            Choose a package that fits your needs or contact us for a custom solution
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 inline-flex items-center justify-center"
-            >
-              Get Custom Quote
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
-            <a
-              href="/contact"
-              className="border-2 border-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105"
-            >
-              Schedule Consultation
-            </a>
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-teal-600">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-8 md:p-12 text-center">
+            <h2 className="text-4xl font-bold mb-4 text-white">Ready to Transform Your Business?</h2>
+            <p className="text-xl mb-8 text-blue-100">
+              Get a free consultation and discover how we can help you achieve your goals
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contact"
+                className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Schedule Free Consultation
+              </a>
+              <a
+                href="/contact"
+                className="border-2 border-white hover:bg-white hover:text-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                Get Custom Quote
+              </a>
+            </div>
           </div>
         </div>
       </section>
