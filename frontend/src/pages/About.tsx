@@ -204,7 +204,7 @@ const About = () => {
               <div key={index} className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl shadow-xl p-2 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="bg-white rounded-xl p-8 text-center">
                   <img
-                    src={member.image}
+                    src={ceoProfile}
                     alt={member.name}
                     className="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-blue-100 shadow-lg"
                   />

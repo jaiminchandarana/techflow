@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin} from 'lucide-react';
 import { useState } from 'react';
+import logo from '@/assets/techflow-logo.png'
 
 const Footer = () => {
   const [email, setEmail] = useState('');
@@ -56,7 +57,7 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <div className="flex items-center mb-4">
               <img 
-                src="/src/assets/techflow-logo.png" 
+                src={logo}
                 alt="TechFlow - IT Solutions Company" 
                 className="h-8 sm:h-8 md:h-10 lg:h-16 xl:h-12 w-auto"
               />
