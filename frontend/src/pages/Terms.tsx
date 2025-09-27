@@ -1,4 +1,3 @@
-import React from 'react';
 import { FileText, Scale, Shield, AlertTriangle, Mail, Phone } from 'lucide-react';
 
 const Terms = () => {
