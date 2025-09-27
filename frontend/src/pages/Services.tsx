@@ -1,52 +1,12 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star, BarChart3, Brain, Code, Zap, Shield, Users, Send} from 'lucide-react';
 
 const Services = () => {
-  const [activeService] = useState('data-analytics');
+  // Removed unused activeService state and currentService variable
+  // const [activeService] = useState('data-analytics');
+  // const currentService = services[activeService as keyof typeof services];
 
-  const services = {
-    'data-analytics': {
-      title: 'Data Analytics & Visualization',
-      icon: <BarChart3 className="h-12 w-12 text-blue-600" />,
-      description: 'Transform your raw data into actionable business insights with our comprehensive analytics solutions.',
-      features: [
-        'Custom Dashboard Development',
-        'Business Intelligence Solutions',
-        'Predictive Analytics',
-        'Data Visualization',
-        'Real-time Reporting',
-        'Performance Metrics Tracking'
-      ]
-    },
-    'ai-ml': {
-      title: 'AI & Machine Learning',
-      icon: <Brain className="h-12 w-12 text-blue-600" />,
-      description: 'Harness the power of artificial intelligence to automate processes and gain competitive advantages.',
-      features: [
-        'Custom AI Model Development',
-        'Natural Language Processing',
-        'Computer Vision Solutions',
-        'Predictive Analytics',
-        'Automation Systems',
-        'AI Integration & Deployment'
-      ]
-    },
-    'web-development': {
-      title: 'Web Development',
-      icon: <Code className="h-12 w-12 text-blue-600" />,
-      description: 'Build modern, scalable web applications that deliver exceptional user experiences.',
-      features: [
-        'Responsive Web Design',
-        'Full-Stack Development',
-        'E-commerce Solutions',
-        'Progressive Web Apps',
-        'API Development',
-        'Performance Optimization'
-      ]
-    }
-  };
-
+  // Also removed the unused services object since we're only using servicesArray
   const servicesArray = [
     {
       id: 'data-analytics',
@@ -301,8 +261,6 @@ const Services = () => {
       ]
     }
   ];
-
-  const currentService = services[activeService as keyof typeof services];
 
   return (
     <div>
