@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import logo from '@/assets/techflow-logo.png'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ const Header = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img 
-                src="/src/assets/techflow-logo.png" 
+                src={logo} 
                 alt="TechFlow - IT Solutions Company" 
                 className="h-10 w-auto"
               />

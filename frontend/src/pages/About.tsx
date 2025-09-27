@@ -1,11 +1,12 @@
 import { Users, Award, Target, Heart, Linkedin, Mail } from 'lucide-react';
+import ceoProfile from '@/assets/jaiminchandarana.png'
 
 const About = () => {
   const team = [
     {
       name: 'Jaimin Chandarana',
       role: 'CEO & Founder',
-      image: '/src/assets/jaiminchandarana.png',
+      image: {ceoProfile},
       bio: 'AI/ML developer and entrepreneur with expertise in modern web technologies, AI, and data analytics. Committed to delivering innovative solutions that drive business growth.',
       linkedin: 'https://www.linkedin.com/in/jaimin-chandarana-903158225/'
     }
