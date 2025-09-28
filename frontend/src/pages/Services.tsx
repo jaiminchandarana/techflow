@@ -95,15 +95,12 @@ const Services = () => {
       features: [
         'Custom AI Model Development',
         'Natural Language Processing',
-        'Computer Vision Solutions',
         'Predictive Analytics',
-        'Automation Systems',
         'AI Integration & Deployment',
         'Predictive Analytics & Forecasting',
-        'Process Automation Systems',
-        'AI Integration & Deployment',
         'Machine Learning Consulting',
-        'AI Strategy & Implementation'
+        'AI Strategy & Implementation',
+        'Automation Workflows',
       ],
       techStack: [
         'Python',
