@@ -124,7 +124,6 @@ const Services = () => {
             'Basic data analysis with AI',
             'Pre-trained model integration',
             'Email support',
-            'Basic documentation',
             '1 month support'
           ],
           popular: false,
@@ -138,12 +137,10 @@ const Services = () => {
           features: [
             'Custom ML model development',
             'Advanced NLP capabilities',
-            'Computer vision integration',
             'API development & integration',
             'Comprehensive testing',
             'Priority support',
-            'Detailed documentation',
-            '3 months support & maintenance'
+            '2 months support & maintenance'
           ],
           popular: true,
           cta: 'Build Custom AI'
@@ -155,14 +152,11 @@ const Services = () => {
           description: 'Complete AI ecosystem for large-scale operations',
           features: [
             'Multi-model AI platform',
-            'Advanced deep learning solutions',
+            'Deep learning solutions',
             'Real-time AI processing',
-            'Scalable cloud deployment',
             'Custom training pipelines',
             '24/7 monitoring & support',
-            'Team training included',
-            'Dedicated AI consultant',
-            '6 months support & updates'
+            '3 months support & updates'
           ],
           popular: false,
           cta: 'Deploy Enterprise AI'
@@ -180,9 +174,6 @@ const Services = () => {
         'E-commerce Solutions',
         'Progressive Web Apps',
         'API Development',
-        'Performance Optimization',
-        'Progressive Web Apps (PWA)',
-        'RESTful API Development',
         'Performance Optimization',
         'SEO & Analytics Integration',
         'Maintenance & Support'
@@ -206,7 +197,6 @@ const Services = () => {
           features: [
             'Responsive single-page design',
             'Contact form integration',
-            'Basic SEO optimization',
             'Mobile-first approach',
             'Fast loading optimization',
             '2 rounds of revisions',
@@ -223,13 +213,12 @@ const Services = () => {
           features: [
             'Multi-page responsive website',
             'Content management system',
-            'Advanced SEO optimization',
+            'SEO optimization',
             'Contact & booking forms',
             'Social media integration',
-            'Analytics setup',
             'Blog functionality',
             '3 rounds of revisions',
-            '3 months support'
+            '2 months support'
           ],
           popular: true,
           cta: 'Build Business Site'
@@ -248,8 +237,8 @@ const Services = () => {
             'Third-party integrations',
             'Advanced security features',
             'Performance optimization',
-            'Unlimited revisions',
-            '6 months support & maintenance'
+            '5 rounds of revisions',
+            '3 months support & maintenance'
           ],
           popular: false,
           cta: 'Develop Custom App'
