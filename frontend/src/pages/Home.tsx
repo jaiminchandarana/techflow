@@ -109,21 +109,21 @@ const Home = () => {
 
                 {/* Content Section - Flexible Height */}
                 <div className="p-6 flex-grow flex flex-col">
-                  {/* Description Card */}
-                  <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                    <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 text-center leading-relaxed">
+                  {/* Description Card - Fixed Equal Height */}
+                  <div className="bg-gray-50 rounded-lg p-4 mb-6 flex items-start h-[120px]">
+                    <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 text-left leading-relaxed">
                       {service.description}
                     </p>
                   </div>
                   
-                  {/* Features Section */}
-                  <div className="bg-blue-50 rounded-lg p-4 mb-6 flex-grow">
+                  {/* Features Section - Dynamic Height Based on Max Content */}
+                  <div className="bg-blue-50 rounded-lg p-4 mb-6 flex-grow min-h-[180px] flex flex-col">
                     <h4 className="font-semibold text-gray-900 mb-3 text-center">Key Features:</h4>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 flex-grow">
                       {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-gray-600 transition-colors duration-300 group-hover:text-gray-700">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 flex-shrink-0 transition-colors duration-300 group-hover:bg-teal-600"></div>
-                          <span className="leading-relaxed">{feature}</span>
+                        <li key={idx} className="flex items-start text-gray-600 transition-colors duration-300 group-hover:text-gray-700">
+                          <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 flex-shrink-0 mt-2 transition-colors duration-300 group-hover:bg-teal-600"></div>
+                          <span className="leading-relaxed text-left">{feature}</span>
                         </li>
                       ))}
                     </ul>

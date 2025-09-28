@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import logo from '../assets/techflow-logo.png';
 
@@ -7,6 +7,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showServices, setShowServices] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -23,6 +24,23 @@ const Header = () => {
     { name: 'AI & Machine Learning', href: '/services#ai-ml' },
     { name: 'Web Development', href: '/services#web-development' },
   ];
+
+  const handleServiceClick = (href: string) => {
+    const [path, hash] = href.split('#');
+    navigate(path);
+    
+    // Small delay to ensure the page has loaded before scrolling
+    setTimeout(() => {
+      if (hash) {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }, 100);
+    
+    setShowServices(false);
+  };
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
@@ -49,12 +67,8 @@ const Header = () => {
                       onMouseEnter={() => setShowServices(true)}
                       onMouseLeave={() => setShowServices(false)}
                     >
-                      <button
-                        onClick={() => {
-                          if (location.pathname !== '/services') {
-                            window.location.href = '/services';
-                          }
-                        }}
+                      <Link
+                        to="/services"
                         className={`${
                           location.pathname === item.href
                             ? 'text-blue-600'
@@ -63,17 +77,17 @@ const Header = () => {
                       >
                         {item.name}
                         <ChevronDown className="ml-1 h-4 w-4" />
-                      </button>
+                      </Link>
                       {showServices && (
                         <div className="absolute top-full left-0 mt-0 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2">
                           {services.map((service) => (
-                            <a
+                            <button
                               key={service.name}
-                              href={service.href}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                              onClick={() => handleServiceClick(service.href)}
+                              className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
                             >
                               {service.name}
-                            </a>
+                            </button>
                           ))}
                         </div>
                       )}
@@ -120,18 +134,35 @@ const Header = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className={`${
-                    location.pathname === item.href
-                      ? 'text-blue-600 bg-blue-50'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
-                  } block px-3 py-2 text-base font-medium transition-colors duration-200`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                <div key={item.name}>
+                  <Link
+                    to={item.href}
+                    className={`${
+                      location.pathname === item.href
+                        ? 'text-blue-600 bg-blue-50'
+                        : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                    } block px-3 py-2 text-base font-medium transition-colors duration-200`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                  {item.hasDropdown && (
+                    <div className="ml-4 space-y-1">
+                      {services.map((service) => (
+                        <button
+                          key={service.name}
+                          onClick={() => {
+                            handleServiceClick(service.href);
+                            setIsOpen(false);
+                          }}
+                          className="w-full text-left block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-gray-50 transition-colors duration-200"
+                        >
+                          {service.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
               <Link
                 to="/contact"

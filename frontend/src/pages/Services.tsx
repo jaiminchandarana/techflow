@@ -237,7 +237,7 @@ const Services = () => {
             'Third-party integrations',
             'Advanced security features',
             'Performance optimization',
-            '5 rounds of revisions',
+            '3 rounds of revisions',
             '3 months support & maintenance'
           ],
           popular: false,
