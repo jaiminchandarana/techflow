@@ -110,7 +110,7 @@ const Home = () => {
                 {/* Content Section - Flexible Height */}
                 <div className="p-6 flex-grow flex flex-col">
                   {/* Description Card - Fixed Equal Height */}
-                  <div className="bg-gray-50 rounded-lg p-4 mb-6 flex items-start h-[120px]">
+                  <div className="bg-gray-50 rounded-lg p-4 mb-6 flex items-start h-[140px]">
                     <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 text-left leading-relaxed">
                       {service.description}
                     </p>
