@@ -5,16 +5,17 @@ import secrets
 import string
 from dotenv import load_dotenv
 
+appPassword = os.getenv("APP_PASSWORD")
 # Load environment variables
 load_dotenv()
 
 class EmailService:
     def __init__(self):
         self.sender_email = os.getenv('SENDER_EMAIL', '24mcajai005@ldce.ac.in')
-        self.app_password = os.getenv('APP_PASSWORD', 'App password')  # Replace with actual app password
+        self.app_password = os.getenv('APP_PASSWORD', 'appPassword')
         self.yag = yagmail.SMTP(user=self.sender_email, password=self.app_password)
         self.company_name = os.getenv('COMPANY_NAME', 'TechFlow')
-        self.website_url = os.getenv('WEBSITE_URL', 'https://yourwebsite.com')
+        self.website_url = os.getenv('WEBSITE_URL', 'techflow-service.vercel.app')
         self.support_email = os.getenv('SUPPORT_EMAIL', 'chandaranajaimin@gmail.com')
         self.phone_number = os.getenv('PHONE_NUMBER', '+91 74908 24904')
 
@@ -451,7 +452,7 @@ if __name__ == "__main__":
     # Sample form data
     sample_form_data = {
         'name': 'John Doe',
-        'email': 'john.doe@example.com',
+        'email': 'jdchandarana3@gmail.com',
         'company': 'Tech Solutions Inc.',
         'phone': '+91 98765 43210',
         'service': 'AI & Machine Learning',

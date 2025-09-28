@@ -1,5 +1,27 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
+  ],
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/contact",
+      "dest": "app.py",
+      "methods": ["POST", "OPTIONS"]
+    },
+    {
+      "src": "/health",
+      "dest": "app.py",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
   ]
 }

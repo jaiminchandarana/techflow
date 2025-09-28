@@ -5,7 +5,15 @@ import logging
 from datetime import datetime
 
 app = Flask(__name__)
-CORS(app)
+
+# Enhanced CORS configuration
+CORS(app, resources={
+    r"/contact": {
+        "origins": ["http://localhost:3000", "https://techflow-service.vercel.app", "*"],
+        "methods": ["POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -14,14 +22,37 @@ logger = logging.getLogger(__name__)
 # Initialize email service
 email_service = EmailService()
 
-@app.route('/consultation', methods=['POST'])
-def handle_consultation():
+@app.route('/contact', methods=['POST', 'OPTIONS'])
+def handle_contact():
     """Handle contact form submissions"""
+    # Handle preflight requests
+    if request.method == 'OPTIONS':
+        return jsonify({'status': 'OK'}), 200
+    
     try:
+        # Log the request details for debugging
+        logger.info(f"Received {request.method} request to /contact")
+        logger.info(f"Content-Type: {request.content_type}")
+        logger.info(f"Headers: {dict(request.headers)}")
+        
         # Get form data from request
+        if not request.is_json:
+            return jsonify({
+                'success': False,
+                'error': 'Content-Type must be application/json',
+                'message': 'Please send data as JSON'
+            }), 400
+            
         form_data = request.get_json()
         
-        # legitate required fields
+        if not form_data:
+            return jsonify({
+                'success': False,
+                'error': 'No data provided',
+                'message': 'Please provide form data'
+            }), 400
+        
+        # Validate required fields (fixed typo: legitate -> validate)
         required_fields = ['name', 'email', 'service', 'message']
         missing_fields = [field for field in required_fields if not form_data.get(field)]
         
@@ -32,13 +63,13 @@ def handle_consultation():
                 'message': 'Please fill in all required fields'
             }), 400
         
-        # legitate email format (basic legitation)
+        # Validate email format (fixed typo: legitate -> validate)
         email = form_data.get('email', '').strip()
         if '@' not in email or '.' not in email:
             return jsonify({
                 'success': False,
-                'error': 'Wrong email format',
-                'message': 'Please provide a legit email address'
+                'error': 'Invalid email format',
+                'message': 'Please provide a valid email address'
             }), 400
         
         # Log the inquiry
@@ -92,10 +123,11 @@ def not_found(error):
 
 @app.errorhandler(405)
 def method_not_allowed(error):
+    logger.error(f"Method not allowed: {request.method} {request.path}")
     return jsonify({
         'success': False,
         'error': 'Method not allowed',
-        'message': 'The requested method is not allowed for this endpoint'
+        'message': f'The method {request.method} is not allowed for {request.path}. Only POST is allowed for /contact'
     }), 405
 
 @app.errorhandler(500)

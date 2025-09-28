@@ -78,52 +78,70 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
+  
+  if (!validateForm()) {
+    return;
+  }
+  
+  setIsSubmitting(true);
+  setSubmitError('');
+  
+  try {
+    console.log('Submitting form data:', formData);
     
-    if (!validateForm()) {
-      return;
+    const response = await fetch('https://jaiminchandaranaportfolio.vercel.app/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+
+    console.log('Response status:', response.status);
+    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+    
+    // Check if response is JSON
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      throw new Error(`Server returned ${response.status}: ${response.statusText}. Expected JSON response.`);
     }
-    
-    setIsSubmitting(true);
-    setSubmitError('');
-    
-    try {
-      const response = await fetch('https://jaiminchandaranaportfolio.vercel.app/consultation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
 
-      const result: ApiResponse = await response.json();
+    const result: ApiResponse = await response.json();
+    console.log('Response data:', result);
 
-      if (response.ok && result.success) {
-        setIsSubmitted(true);
-        setInquiryId(result.inquiry_id || '');
-        
-        // Optional: Track successful submissions
-        if (window.gtag) {
-          window.gtag('event', 'form_submit', {
-            event_category: 'engagement',
-            event_label: formData.service,
-            value: 1
-          });
-        }
-      } else {
-        throw new Error(result.message || result.error || 'Failed to send message');
+    if (response.ok && result.success) {
+      setIsSubmitted(true);
+      setInquiryId(result.inquiry_id || '');
+      
+      // Optional: Track successful submissions
+      if (window.gtag) {
+        window.gtag('event', 'form_submit', {
+          event_category: 'engagement',
+          event_label: formData.service,
+          value: 1
+        });
       }
-    } catch (error) {
-      console.error('Error sending message:', error);
+    } else {
+      throw new Error(result.message || result.error || `Server error: ${response.status}`);
+    }
+  } catch (error) {
+    console.error('Error sending message:', error);
+    
+    if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+      setSubmitError('Network error: Unable to connect to server. Please check your internet connection and try again.');
+    } else {
       setSubmitError(
         error instanceof Error 
           ? error.message 
           : 'Failed to send message. Please try again or contact us directly.'
       );
-    } finally {
-      setIsSubmitting(false);
     }
-  };
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const resetForm = () => {
     setIsSubmitted(false);

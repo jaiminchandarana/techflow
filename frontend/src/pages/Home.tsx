@@ -80,7 +80,7 @@ const Home = () => {
         </div>
       </section>
 
-     {/* Services Section */}
+      {/* Services Section */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -92,25 +92,25 @@ const Home = () => {
             </div>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-pointer overflow-hidden flex flex-col h-full">
-                {/* Header Section - Fixed Height for Perfect Alignment */}
-                <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 h-[200px] flex flex-col justify-center">
+              <div key={index} className="bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group cursor-pointer overflow-hidden h-full flex flex-col">
+                {/* Header Section - Fixed Height */}
+                <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-6">
                   <div className="flex items-center justify-center mb-4">
                     <div className="bg-white rounded-full p-3 shadow-md group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-110">
                       {service.icon}
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 text-center group-hover:text-blue-600 transition-colors duration-300 leading-tight">
+                  <h3 className="text-2xl font-bold text-gray-900 text-center group-hover:text-blue-600 transition-colors duration-300 mb-4 min-h-[64px] flex items-center justify-center">
                     {service.title}
                   </h3>
                 </div>
 
-                {/* Content Section - Structured Layout for Perfect Alignment */}
-                <div className="p-6 flex flex-col flex-grow">
-                  {/* Description Card - Fixed Height */}
-                  <div className="bg-gray-50 rounded-lg p-4 mb-6 h-[140px] flex items-start">
+                {/* Content Section - Flexible Height */}
+                <div className="p-6 flex-grow flex flex-col">
+                  {/* Description Card */}
+                  <div className="bg-gray-50 rounded-lg p-4 mb-6">
                     <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300 text-center leading-relaxed">
                       {service.description}
                     </p>
@@ -129,14 +129,14 @@ const Home = () => {
                     </ul>
                   </div>
                   
-                  {/* Pricing and CTA Section - Fixed Height and Bottom Aligned */}
+                  {/* Pricing and CTA Section - Fixed at Bottom */}
                   <div className="mt-auto">
-                    <div className="bg-gradient-to-r from-blue-50 to-teal-50 rounded-lg p-3 mb-4 h-[50px] flex items-center justify-center">
+                    <div className="bg-gradient-to-r from-blue-50 to-teal-50 rounded-lg p-4 mb-4">
                       <div className="text-lg font-semibold text-blue-600 text-center group-hover:text-blue-700 transition-colors duration-300">
                         {service.startingPrice}
                       </div>
                     </div>
-                    <div className="text-center h-[50px] flex items-center">
+                    <div className="text-center">
                       <a
                         href={`/services${service.href}`}
                         className="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 group-hover:shadow-lg transform group-hover:scale-105"
