@@ -90,7 +90,7 @@ const Contact = () => {
   try {
     console.log('Submitting form data:', formData);
     
-    const response = await fetch('https://jaiminchandaranaportfolio.vercel.app/contact', {
+    const response = await fetch('https://techflow-service.vercel.app/contact', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

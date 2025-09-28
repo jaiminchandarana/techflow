@@ -6,12 +6,17 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Enhanced CORS configuration
+# Enhanced CORS configuration - FIXED
 CORS(app, resources={
     r"/contact": {
-        "origins": ["http://localhost:3000", "https://techflow-service.vercel.app", "*"],
-        "methods": ["POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization"]
+        "origins": [
+            "http://localhost:3000", 
+            "https://techflow-service.vercel.app",
+            "https://jaiminchandaranaportfolio.vercel.app",  # Added your actual domain
+            "*"
+        ],
+        "methods": ["GET", "POST", "OPTIONS"],  # Added GET for debugging
+        "allow_headers": ["Content-Type", "Authorization", "Accept"]  # Added Accept header
     }
 })
 
@@ -22,12 +27,21 @@ logger = logging.getLogger(__name__)
 # Initialize email service
 email_service = EmailService()
 
-@app.route('/contact', methods=['POST', 'OPTIONS'])
+@app.route('/contact', methods=['GET', 'POST', 'OPTIONS'])  # Added GET method
 def handle_contact():
     """Handle contact form submissions"""
     # Handle preflight requests
     if request.method == 'OPTIONS':
         return jsonify({'status': 'OK'}), 200
+    
+    # Handle GET requests for debugging
+    if request.method == 'GET':
+        return jsonify({
+            'message': 'Contact endpoint is working! Use POST to submit form data.',
+            'method': 'GET',
+            'endpoint': '/contact',
+            'status': 'ready'
+        }), 200
     
     try:
         # Log the request details for debugging
@@ -52,7 +66,7 @@ def handle_contact():
                 'message': 'Please provide form data'
             }), 400
         
-        # Validate required fields (fixed typo: legitate -> validate)
+        # Validate required fields
         required_fields = ['name', 'email', 'service', 'message']
         missing_fields = [field for field in required_fields if not form_data.get(field)]
         
@@ -63,7 +77,7 @@ def handle_contact():
                 'message': 'Please fill in all required fields'
             }), 400
         
-        # Validate email format (fixed typo: legitate -> validate)
+        # Validate email format
         email = form_data.get('email', '').strip()
         if '@' not in email or '.' not in email:
             return jsonify({
@@ -97,7 +111,7 @@ def handle_contact():
             }), 500
             
     except Exception as e:
-        logger.error(f"Unexpected error in consultation endpoint: {str(e)}")
+        logger.error(f"Unexpected error in contact endpoint: {str(e)}")
         return jsonify({
             'success': False,
             'error': 'Internal server error',
@@ -127,7 +141,7 @@ def method_not_allowed(error):
     return jsonify({
         'success': False,
         'error': 'Method not allowed',
-        'message': f'The method {request.method} is not allowed for {request.path}. Only POST is allowed for /contact'
+        'message': f'The method {request.method} is not allowed for {request.path}. Allowed methods: GET, POST, OPTIONS'
     }), 405
 
 @app.errorhandler(500)
