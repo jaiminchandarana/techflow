@@ -12,7 +12,6 @@ CORS(app, resources={
         "origins": [
             "http://localhost:3000", 
             "https://techflow-service.vercel.app",
-            "https://jaiminchandaranaportfolio.vercel.app",  # Added your actual domain
             "*"
         ],
         "methods": ["GET", "POST", "OPTIONS"],  # Added GET for debugging
