@@ -8,14 +8,15 @@ app = Flask(__name__)
 
 # Enhanced CORS configuration - FIXED
 CORS(app, resources={
-    r"/contact": {
+    r"/*": {
         "origins": [
             "http://localhost:3000", 
-            "https://techflow-service.vercel.app",
-            "*"
+            "https://techflow-service.vercel.app", 
+            "https://techflow-backend-t4zw.onrender.com"
         ],
-        "methods": ["GET", "POST", "OPTIONS"],  # Added GET for debugging
-        "allow_headers": ["Content-Type", "Authorization", "Accept"]  # Added Accept header
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "Accept"],
+        "supports_credentials": False
     }
 })
 
