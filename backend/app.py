@@ -20,6 +20,24 @@ CORS(app, resources={
     }
 })
 
+# Additional CORS headers for preflight requests
+@app.after_request
+def after_request(response):
+    origin = request.headers.get('Origin')
+    allowed_origins = [
+        "http://localhost:3000", 
+        "https://techflow-service.vercel.app", 
+        "https://techflow-backend-t4zw.onrender.com"
+    ]
+    
+    if origin in allowed_origins:
+        response.headers.add('Access-Control-Allow-Origin', origin)
+    
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization,Accept')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers.add('Access-Control-Allow-Credentials', 'false')
+    return response
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -32,7 +50,8 @@ def handle_contact():
     """Handle contact form submissions"""
     # Handle preflight requests
     if request.method == 'OPTIONS':
-        return jsonify({'status': 'OK'}), 200
+        response = jsonify({'status': 'OK'})
+        return response, 200
     
     # Handle GET requests for debugging
     if request.method == 'GET':
@@ -46,6 +65,7 @@ def handle_contact():
     try:
         # Log the request details for debugging
         logger.info(f"Received {request.method} request to /contact")
+        logger.info(f"Origin: {request.headers.get('Origin', 'Not set')}")
         logger.info(f"Content-Type: {request.content_type}")
         logger.info(f"Headers: {dict(request.headers)}")
         
