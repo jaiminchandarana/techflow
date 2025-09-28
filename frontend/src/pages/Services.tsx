@@ -29,9 +29,7 @@ const Services = () => {
         'Python',
         'SQL',
         'Excel',
-        'Google Analytics',
-        'Apache Spark',
-        'Snowflake'
+        'Google Analytics'
       ],
       packages: [
         {
@@ -114,8 +112,9 @@ const Services = () => {
         'Scikit-learn',
         'OpenAI API',
         'Hugging Face',
-        'AWS SageMaker',
-        'Docker'
+        'Langchain',
+        'Pandas',
+        'Numpy'
       ],
       packages: [
         {
@@ -314,14 +313,28 @@ const Services = () => {
                       
                       <p className="text-gray-600 mb-6 text-center">{service.description}</p>
                       
-                      <div className="space-y-3">
+                      <div className="space-y-4 mb-6">
                         <h4 className="font-semibold text-gray-900 mb-3 text-center">Key Features:</h4>
-                        {service.features.map((feature, index) => (
-                          <div key={index} className="flex items-start">
-                            <div className="w-1.5 h-1.5 bg-black rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                            <span className="text-black text-sm">{feature}</span>
-                          </div>
-                        ))}
+                        <div className="space-y-2">
+                          {service.features.map((feature, index) => (
+                            <div key={index} className="flex items-center text-gray-600">
+                              <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 flex-shrink-0"></div>
+                              <span className="text-sm leading-relaxed">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <h4 className="font-semibold text-gray-900 mb-3 text-center">Tech Stack:</h4>
+                        <div className="space-y-2">
+                          {service.techStack.map((tech, index) => (
+                            <div key={index} className="flex items-center text-gray-600">
+                              <div className="w-2 h-2 bg-teal-600 rounded-full mr-3 flex-shrink-0"></div>
+                              <span className="text-sm leading-relaxed">{tech}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -361,9 +374,9 @@ const Services = () => {
                                   <h5 className="font-semibold text-gray-900 text-sm mb-3">Includes:</h5>
                                   <div className="space-y-2">
                                     {pkg.features.slice(0, Math.ceil(pkg.features.length / 2)).map((feature, idx) => (
-                                      <div key={idx} className="flex items-start">
-                                        <div className="w-1.5 h-1.5 bg-black rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                                        <span className="text-black text-sm">{feature}</span>
+                                      <div key={idx} className="flex items-center text-gray-600">
+                                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        <span className="text-sm leading-relaxed">{feature}</span>
                                       </div>
                                     ))}
                                   </div>
@@ -372,9 +385,9 @@ const Services = () => {
                                 <div>
                                   <div className="space-y-2 mt-6">
                                     {pkg.features.slice(Math.ceil(pkg.features.length / 2)).map((feature, idx) => (
-                                      <div key={idx} className="flex items-start">
-                                        <div className="w-1.5 h-1.5 bg-black rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
-                                        <span className="text-black text-sm">{feature}</span>
+                                      <div key={idx} className="flex items-center text-gray-600">
+                                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3 flex-shrink-0"></div>
+                                        <span className="text-sm leading-relaxed">{feature}</span>
                                       </div>
                                     ))}
                                   </div>
@@ -382,15 +395,16 @@ const Services = () => {
                               </div>
                               
                               <div className="mt-4">
-                                <button
-                                  className={`w-full py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-200 transform hover:scale-105 ${
+                                <Link
+                                  to="/contact"
+                                  className={`block w-full py-3 px-4 rounded-lg font-semibold text-sm transition-all duration-200 transform hover:scale-105 text-center ${
                                     pkg.popular
                                       ? 'bg-blue-600 hover:bg-blue-700 text-white'
                                       : 'bg-gray-100 hover:bg-gray-200 text-gray-900'
                                   }`}
                                 >
                                   {pkg.cta}
-                                </button>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -477,18 +491,18 @@ const Services = () => {
               Get a free consultation and discover how we can help you achieve your goals
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="bg-white text-blue-600 hover:bg-gray-100 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Schedule Free Consultation
-              </a>
-              <a
-                href="/contact"
+              </Link>
+              <Link
+                to="/contact"
                 className="border-2 border-white hover:bg-white hover:text-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Get Custom Quote
-              </a>
+              </Link>
             </div>
           </div>
         </div>
