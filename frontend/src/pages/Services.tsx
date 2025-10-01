@@ -95,23 +95,17 @@ const Services = () => {
       features: [
         'Custom AI Model Development',
         'Natural Language Processing',
-        'Predictive Analytics',
         'AI Integration & Deployment',
         'Predictive Analytics & Forecasting',
         'Machine Learning Consulting',
-        'AI Strategy & Implementation',
         'Automation Workflows',
       ],
       techStack: [
         'Python',
-        'TensorFlow',
-        'PyTorch',
+        'TensorFlow / PyTorch',
         'Scikit-learn',
-        'OpenAI API',
-        'Hugging Face',
-        'Langchain',
-        'Pandas',
-        'Numpy'
+        'OpenAI/Gemini etc. API',
+        'Langchain'
       ],
       packages: [
         {
@@ -172,11 +166,9 @@ const Services = () => {
         'Responsive Web Design',
         'Full-Stack Development',
         'E-commerce Solutions',
-        'Progressive Web Apps',
         'API Development',
         'Performance Optimization',
-        'SEO & Analytics Integration',
-        'Maintenance & Support'
+        'SEO & Analytics Integration'
       ],
       techStack: [
         'React.js',
