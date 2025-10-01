@@ -63,7 +63,7 @@ else:
     logger.warning(initialization_error)
 
 @app.route('/contact', methods=['POST', 'OPTIONS'])
-def handle_contact():
+def contact():
     """Handle contact form submissions"""
     # Handle preflight requests
     if request.method == 'OPTIONS':
@@ -77,7 +77,7 @@ def handle_contact():
         if not request.is_json:
             return jsonify({
                 'success': False,
-                'error': 'Invalid content type',
+                'error': 'Wrong content type',
                 'message': 'Request must be JSON'
             }), 400
             
@@ -107,7 +107,7 @@ def handle_contact():
             return jsonify({
                 'success': False,
                 'error': 'Invalid email format',
-                'message': 'Please provide a valid email address'
+                'message': 'Please provide a Legit email address'
             }), 400
         
         # Log the inquiry

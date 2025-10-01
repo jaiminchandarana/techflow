@@ -38,7 +38,7 @@ const Services = () => {
           period: '/month',
           description: 'Perfect for small businesses starting their data journey',
           features: [
-            'Basic dashboard with 5 key metrics',
+            'Basic dashboard',
             'Weekly automated reports',
             'Data integration from 2 sources',
             'Email support',
@@ -54,7 +54,7 @@ const Services = () => {
           period: '/month',
           description: 'Comprehensive business intelligence for growing companies',
           features: [
-            'Advanced multi-page dashboard',
+            'Advanced dashboard',
             'Daily automated reports',
             'Data integration from 5+ sources',
             'Priority email & chat support',
@@ -289,7 +289,7 @@ const Services = () => {
                         <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
                       </div>
                       
-                      <p className="text-gray-600 mb-6 text-center">{service.description}</p>
+                      <p className="text-gray-600 mb-6 text-left">{service.description}</p>
                       
                       <div className="space-y-4 mb-6">
                         <h4 className="font-semibold text-gray-900 mb-3 text-center">Key Features:</h4>
