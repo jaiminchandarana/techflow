@@ -47,7 +47,6 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value
     });
-    // Clear any previous errors when user starts typing
     if (submitError) {
       setSubmitError('');
     }
@@ -78,70 +77,65 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  if (!validateForm()) {
-    return;
-  }
-  
-  setIsSubmitting(true);
-  setSubmitError('');
-  
-  try {
-    console.log('Submitting form data:', formData);
+    e.preventDefault();
     
-    const response = await fetch('https://techflow-backend-t4zw.onrender.com/contact', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-
-    console.log('Response status:', response.status);
-    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
-    
-    // Check if response is JSON
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error(`Server returned ${response.status}: ${response.statusText}. Expected JSON response.`);
+    if (!validateForm()) {
+      return;
     }
-
-    const result: ApiResponse = await response.json();
-    console.log('Response data:', result);
-
-    if (response.ok && result.success) {
-      setIsSubmitted(true);
-      setInquiryId(result.inquiry_id || '');
+    
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      // Updated backend URL - change this to your deployed backend URL
+      const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
       
-      // Optional: Track successful submissions
-      if (window.gtag) {
-        window.gtag('event', 'form_submit', {
-          event_category: 'engagement',
-          event_label: formData.service,
-          value: 1
-        });
+      const response = await fetch(`${BACKEND_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error(`Server returned ${response.status}: ${response.statusText}. Expected JSON response.`);
       }
-    } else {
-      throw new Error(result.message || result.error || `Server error: ${response.status}`);
+
+      const result: ApiResponse = await response.json();
+
+      if (response.ok && result.success) {
+        setIsSubmitted(true);
+        setInquiryId(result.inquiry_id || '');
+        
+        if (window.gtag) {
+          window.gtag('event', 'form_submit', {
+            event_category: 'engagement',
+            event_label: formData.service,
+            value: 1
+          });
+        }
+      } else {
+        throw new Error(result.message || result.error || `Server error: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      
+      if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+        setSubmitError('Network error: Unable to connect to server. Please check your internet connection and try again.');
+      } else {
+        setSubmitError(
+          error instanceof Error 
+            ? error.message 
+            : 'Failed to send message. Please try again or contact us directly.'
+        );
+      }
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error('Error sending message:', error);
-    
-    if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
-      setSubmitError('Network error: Unable to connect to server. Please check your internet connection and try again.');
-    } else {
-      setSubmitError(
-        error instanceof Error 
-          ? error.message 
-          : 'Failed to send message. Please try again or contact us directly.'
-      );
-    }
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
 
   const resetForm = () => {
     setIsSubmitted(false);
