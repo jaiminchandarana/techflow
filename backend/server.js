@@ -427,7 +427,7 @@ app.post('/newsletter', async (req, res) => {
 });
 
 // Career application endpoint
-app.post('/career', async (req, res) => {
+app.post('/careers', async (req, res) => {
   try {
     const formData = req.body;
 
