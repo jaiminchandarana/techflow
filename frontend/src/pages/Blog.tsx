@@ -26,7 +26,7 @@ const Blog = () => {
     setIsSubscribing(true);
     
     try {
-      const response = await fetch('https://jaiminchandaranaportfolio.vercel.app/newsletter', {
+      const response = await fetch('https://techflow-service.vercel.app/blog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
