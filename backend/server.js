@@ -19,13 +19,21 @@ app.use(cors({
 
 app.use(express.json());
 
-// Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // use STARTTLS
   auth: {
     user: process.env.SENDER_EMAIL,
     pass: process.env.APP_PASSWORD
-  }
+  },
+  tls: {
+    rejectUnauthorized: false,
+    minVersion: 'TLSv1.2'
+  },
+  connectionTimeout: 10000, // 10 seconds
+  greetingTimeout: 10000,
+  socketTimeout: 10000
 });
 
 // Verify transporter configuration
@@ -68,7 +76,7 @@ const getEmailFooter = () => `
         <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;">Stay Connected</h3>
         <div style="margin-bottom: 15px; font-family: 'Poppins', sans-serif;">
           <span style="display: inline-block; margin: 0 10px; color: #64748b; font-size: 14px;">
-            📧 ${process.env.SUPPORT_EMAIL || 'support@techflow.com'}
+            📧 ${process.env.SUPPORT_EMAIL || 'chandaranajaimin@gmail.com'}
           </span>
           <span style="display: inline-block; margin: 0 10px; color: #64748b; font-size: 14px;">
             📞 ${process.env.PHONE_NUMBER || '+91 74908 24904'}
@@ -296,8 +304,8 @@ app.post('/contact', async (req, res) => {
     if (!emailRegex.test(formData.email)) {
       return res.status(400).json({
         success: false,
-        error: 'Invalid email format',
-        message: 'Please provide a valid email address'
+        error: 'Wrong email format',
+        message: 'Please provide a legit email address'
       });
     }
 
