@@ -55,17 +55,36 @@ const generateInquiryId = () => {
 
 // Email templates
 const getEmailHeader = () => `
-  <div style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff;">
-    <div style="background: #ffffff; padding: 30px 20px; text-align: center; border-bottom: 1px solid #e5e7eb;">
-      <img src="https://techflow-service.vercel.app/assets/techflow-logo.png" alt="${process.env.COMPANY_NAME || 'TechFlow'}" style="height: 48px; width: auto; margin-bottom: 12px;" />
-      <p style="color: #6b7280; margin: 8px 0 0 0; font-size: 13px; font-weight: 400; font-family: 'Inter', sans-serif;">
+  <div style="font-family: 'Poppins', 'Calibri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+    <div style="background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%); padding: 30px 20px; text-align: center; border-radius: 12px 12px 0 0;">
+      <h1 style="color: white; margin: 0; font-size: 28px; font-weight: 700; letter-spacing: -0.5px; font-family: 'Poppins', sans-serif;">
+        ${process.env.COMPANY_NAME || 'TechFlow'}
+      </h1>
+      <p style="color: #bfdbfe; margin: 8px 0 0 0; font-size: 14px; font-weight: 500; font-family: 'Poppins', sans-serif;">
         Empowering Innovation Through Technology
       </p>
     </div>
 `;
 
 const getEmailFooter = () => `
-    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px 20px; border-radius: 0 0 12px 12px; border-top: 1px solid #e2e8f0;">      
+    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px 20px; border-radius: 0 0 12px 12px; border-top: 1px solid #e2e8f0;">
+      <div style="text-align: center; margin-bottom: 20px;">
+        <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;">Stay Connected</h3>
+        <div style="margin-bottom: 15px; font-family: 'Poppins', sans-serif;">
+          <span style="display: inline-block; margin: 0 10px; color: #64748b; font-size: 14px;">
+            📧 ${process.env.SUPPORT_EMAIL}
+          </span>
+          <span style="display: inline-block; margin: 0 10px; color: #64748b; font-size: 14px;">
+            📞 ${process.env.PHONE_NUMBER}
+          </span>
+        </div>
+        <div style="margin-bottom: 15px;">
+          <a href="${process.env.WEBSITE_URL}" style="color: #2563eb; text-decoration: none; font-size: 14px; font-family: 'Poppins', sans-serif;">
+            🌐 Visit Our Website
+          </a>
+        </div>
+      </div>
+      
       <div style="text-align: center; padding-top: 20px; border-top: 1px solid #e2e8f0;">
         <p style="color: #94a3b8; font-size: 12px; margin: 0; line-height: 1.5; font-family: 'Poppins', sans-serif;">
           © ${new Date().getFullYear()} ${process.env.COMPANY_NAME}. All rights reserved.<br>
