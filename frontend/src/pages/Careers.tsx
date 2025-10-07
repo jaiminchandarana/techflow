@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Clock, DollarSign, Users, Code, Zap, Send, Briefcase, Star, Award, TrendingUp, Heart } from 'lucide-react';
+import { MapPin, Clock, IndianRupee, Users, Code, Zap, Send, Briefcase, Star, Award, TrendingUp, Heart, AlertCircle } from 'lucide-react';
 import JobModal from '../components/JobModal';
 import ApplicationModal from '../components/ApplicationModal';
 
@@ -7,13 +7,16 @@ const Careers = () => {
   const [showJobModal, setShowJobModal] = useState(false);
   const [showApplicationModal, setShowApplicationModal] = useState(false);
 
+  // Toggle this to show/hide open positions
+  const hasOpenPositions = true; // Set to false when no positions available
+
   const openPositions = [
     {
       title: 'Full Stack Developer',
       department: 'Engineering',
       type: 'Full-time',
       location: 'Remote',
-      salary: '₹3-8 LPA',
+      salary: '3-8 LPA',
       description: 'Join our team to build cutting-edge web applications and AI solutions.',
       requirements: ['2+ years experience', 'React/Node.js', 'TypeScript'],
       posted: '2 days ago',
@@ -24,7 +27,7 @@ const Careers = () => {
       department: 'Engineering',
       type: 'Full-time',
       location: 'Hybrid',
-      salary: '₹2.5-6 LPA',
+      salary: '2.5-6 LPA',
       description: 'Create beautiful and responsive user interfaces for our web applications.',
       requirements: ['1+ years experience', 'React/Vue.js', 'CSS/Tailwind'],
       posted: '1 week ago',
@@ -35,7 +38,7 @@ const Careers = () => {
       department: 'Design',
       type: 'Contract',
       location: 'Remote',
-      salary: '₹2-5 LPA',
+      salary: '2-5 LPA',
       description: 'Design intuitive and engaging user experiences for our digital products.',
       requirements: ['Portfolio required', 'Figma/Adobe XD', 'User research'],
       posted: '3 days ago',
@@ -143,103 +146,169 @@ const Careers = () => {
           </div>
         </section>
 
-        {/* Open Positions - Enhanced Cards */}
+        {/* Open Positions Section */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <div className="bg-gray-50 rounded-2xl p-8 mb-8">
                 <h2 className="text-4xl font-bold text-gray-900 mb-4">Open Positions</h2>
-                <p className="text-xl text-gray-600">Join our growing team and make an impact from day one</p>
+                <p className="text-xl text-gray-600">
+                  {hasOpenPositions 
+                    ? 'Join our growing team and make an impact from day one'
+                    : 'Check back soon for new opportunities'}
+                </p>
               </div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {openPositions.map((position, index) => (
-                <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-4 hover:scale-105 cursor-pointer group border border-gray-100"
-                     onClick={() => setShowJobModal(true)}>
-                  
-                  {/* Card Header */}
-                  <div className="p-6 border-b border-gray-100">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="bg-gradient-to-br from-blue-500 to-teal-500 p-3 rounded-xl shadow-lg group-hover:shadow-blue-300/30 transition-all duration-300">
-                        <Briefcase className="h-6 w-6 text-white" />
-                      </div>
-                      {position.urgent && (
-                        <div className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium flex items-center">
-                          <Clock className="h-3 w-3 mr-1" />
-                          Urgent
+            {hasOpenPositions ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {openPositions.map((position, index) => (
+                  <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-4 hover:scale-105 cursor-pointer group border border-gray-100"
+                       onClick={() => setShowJobModal(true)}>
+                    
+                    {/* Card Header */}
+                    <div className="p-6 border-b border-gray-100">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="bg-gradient-to-br from-blue-500 to-teal-500 p-3 rounded-xl shadow-lg group-hover:shadow-blue-300/30 transition-all duration-300">
+                          <Briefcase className="h-6 w-6 text-white" />
                         </div>
-                      )}
+                        {position.urgent && (
+                          <div className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                            <Clock className="h-3 w-3 mr-1" />
+                            Urgent
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-teal-100 group-hover:text-teal-800 transition-colors duration-300">
+                          {position.type}
+                        </span>
+                        <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                          {position.department}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                        {position.title}
+                      </h3>
                     </div>
-                    
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium group-hover:bg-teal-100 group-hover:text-teal-800 transition-colors duration-300">
-                        {position.type}
-                      </span>
-                      <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
-                        {position.department}
-                      </span>
-                    </div>
-                    
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-                      {position.title}
-                    </h3>
-                  </div>
 
-                  {/* Card Body */}
-                  <div className="p-6">
-                    <p className="text-gray-600 mb-4 leading-relaxed">{position.description}</p>
-                    
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center text-sm text-gray-500">
-                        <MapPin className="h-4 w-4 mr-2 text-blue-500" />
-                        <span>{position.location}</span>
+                    {/* Card Body */}
+                    <div className="p-6">
+                      <p className="text-gray-600 mb-4 leading-relaxed">{position.description}</p>
+                      
+                      <div className="space-y-3 mb-6">
+                        <div className="flex items-center text-sm text-gray-500">
+                          <MapPin className="h-4 w-4 mr-2 text-blue-500" />
+                          <span>{position.location}</span>
+                        </div>
+                        <div className="flex items-center text-sm text-gray-500">
+                          <IndianRupee className="h-4 w-4 mr-2 text-green-500" />
+                          <span>{position.salary}</span>
+                        </div>
+                        <div className="flex items-center text-sm text-gray-500">
+                          <Clock className="h-4 w-4 mr-2 text-orange-500" />
+                          <span>Posted {position.posted}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center text-sm text-gray-500">
-                        <DollarSign className="h-4 w-4 mr-2 text-green-500" />
-                        <span>{position.salary}</span>
-                      </div>
-                      <div className="flex items-center text-sm text-gray-500">
-                        <Clock className="h-4 w-4 mr-2 text-orange-500" />
-                        <span>Posted {position.posted}</span>
+                      
+                      <div className="mb-6">
+                        <h4 className="font-semibold text-gray-900 mb-2">Key Requirements:</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {position.requirements.map((req, idx) => (
+                            <span key={idx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium">
+                              {req}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-gray-900 mb-2">Key Requirements:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {position.requirements.map((req, idx) => (
-                          <span key={idx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium">
-                            {req}
-                          </span>
-                        ))}
-                      </div>
+
+                    {/* Card Footer */}
+                    <div className="p-6 bg-gray-50 rounded-b-2xl">
+                      <button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-4 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg">
+                        View Details & Apply
+                      </button>
                     </div>
                   </div>
+                ))}
+              </div>
+            ) : (
+              /* No Open Positions Card */
+              <div className="max-w-3xl mx-auto">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-xl overflow-hidden">
+                  <div className="p-8 md:p-12">
+                    <div className="text-center">
+                      <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-100 to-teal-100 rounded-full mb-6">
+                        <AlertCircle className="h-10 w-10 text-blue-600" />
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        No Open Positions Currently
+                      </h3>
+                      
+                      <p className="text-gray-600 mb-8 max-w-xl mx-auto leading-relaxed">
+                        While we don't have any open positions at the moment, we're always interested in meeting talented individuals who share our passion for technology and innovation.
+                      </p>
 
-                  {/* Card Footer */}
-                  <div className="p-6 bg-gray-50 rounded-b-2xl">
-                    <button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-4 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 shadow-lg">
-                      View Details & Apply
-                    </button>
+                      <div className="bg-white/80 backdrop-blur rounded-xl p-6 mb-8 border border-blue-100">
+                        <h4 className="font-semibold text-gray-900 mb-3">Stay Connected</h4>
+                        <p className="text-sm text-gray-600 mb-4">
+                          Join our talent pool to be notified when new opportunities arise that match your skills and interests.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                          <button
+                            onClick={() => setShowApplicationModal(true)}
+                            className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105 inline-flex items-center justify-center shadow-lg"
+                          >
+                            <Send className="mr-2 h-5 w-5" />
+                            Join Talent Pool
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-3 gap-4 text-center">
+                        <div className="bg-white/60 backdrop-blur rounded-lg p-4 border border-gray-200">
+                          <div className="text-blue-600 mb-2">
+                            <Users className="h-6 w-6 mx-auto" />
+                          </div>
+                          <p className="text-xs text-gray-600">Follow us on LinkedIn for job updates</p>
+                        </div>
+                        <div className="bg-white/60 backdrop-blur rounded-lg p-4 border border-gray-200">
+                          <div className="text-teal-600 mb-2">
+                            <Briefcase className="h-6 w-6 mx-auto" />
+                          </div>
+                          <p className="text-xs text-gray-600">Check back regularly for new openings</p>
+                        </div>
+                        <div className="bg-white/60 backdrop-blur rounded-lg p-4 border border-gray-200">
+                          <div className="text-purple-600 mb-2">
+                            <Star className="h-6 w-6 mx-auto" />
+                          </div>
+                          <p className="text-xs text-gray-600">Send us your resume for future roles</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
-            
-            <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Don't See Your Role?</h3>
-                <p className="text-gray-600 mb-6">We're always looking for talented individuals. Send us your resume!</p>
-                <button
-                  onClick={() => setShowApplicationModal(true)}
-                  className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 inline-flex items-center shadow-lg"
-                >
-                  Send General Application
-                  <Send className="ml-2 h-5 w-5" />
-                </button>
               </div>
-            </div>
+            )}
+            
+            {hasOpenPositions && (
+              <div className="text-center mt-12">
+                <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-2xl p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Don't See Your Role?</h3>
+                  <p className="text-gray-600 mb-6">We're always looking for talented individuals. Send us your resume!</p>
+                  <button
+                    onClick={() => setShowApplicationModal(true)}
+                    className="bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105 inline-flex items-center shadow-lg"
+                  >
+                    Send General Application
+                    <Send className="ml-2 h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
@@ -326,9 +395,6 @@ const Careers = () => {
                     Apply Now
                     <Send className="ml-2 h-5 w-5" />
                   </button>
-                  {/* <button className="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 transform hover:scale-105">
-                    Learn More About Us
-                  </button> */}
                 </div>
               </div>
             </div>
