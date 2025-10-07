@@ -53,7 +53,6 @@ const generateInquiryId = () => {
   return `TF${timestamp}${randomPart}`;
 };
 
-// Email templates with white, gray, black theme (keeping header unchanged)
 const getEmailHeader = () => `
   <div style="font-family: 'Poppins', 'Calibri', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff;">
     <div style="background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%); padding: 30px 20px; text-align: center; border-radius: 12px 12px 0 0;">
@@ -447,4 +446,249 @@ const getNewsletterEmailContent = (email) => {
     </div>
     ${getEmailFooter()}
   `;
-};
+}; 
+
+// CONTACT ENDPOINT
+app.post('/contact', async (req, res) => {
+  try {
+    const formData = req.body;
+
+    const requiredFields = ['name', 'email', 'service', 'message'];
+    const missingFields = requiredFields.filter(field => !formData[field]?.trim());
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        success: false,
+        error: `Missing required fields: ${missingFields.join(', ')}`,
+        message: 'Please fill in all required fields'
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Wrong email format',
+        message: 'Please provide a legit email address'
+      });
+    }
+
+    const inquiryId = generateInquiryId();
+
+    const clientEmailOptions = {
+      from: `"${process.env.COMPANY_NAME}" <${process.env.SENDER_EMAIL}>`,
+      to: formData.email,
+      subject: `Thank You for Your Inquiry - ${process.env.COMPANY_NAME} [${inquiryId}]`,
+      html: getClientEmailContent(formData, inquiryId)
+    };
+
+    const adminEmailOptions = {
+      from: `"${process.env.COMPANY_NAME}" <${process.env.SENDER_EMAIL}>`,
+      to: process.env.SUPPORT_EMAIL,
+      subject: `🚨 New Service Inquiry - ${formData.service} - [${inquiryId}]`,
+      html: getAdminEmailContent(formData, inquiryId)
+    };
+
+    let clientEmailSent = false;
+    let adminEmailSent = false;
+
+    try {
+      await transporter.sendMail(clientEmailOptions);
+      clientEmailSent = true;
+      console.log('Client email sent successfully');
+    } catch (error) {
+      console.error('Error sending client email:', error);
+    }
+
+    try {
+      await transporter.sendMail(adminEmailOptions);
+      adminEmailSent = true;
+      console.log('Admin email sent successfully');
+    } catch (error) {
+      console.error('Error sending admin email:', error);
+    }
+
+    res.status(200).json({
+      success: true,
+      inquiry_id: inquiryId,
+      message: 'Thank you for your inquiry! We will contact you within 24 hours.',
+      details: {
+        client_email_sent: clientEmailSent,
+        admin_email_sent: adminEmailSent
+      }
+    });
+
+  } catch (error) {
+    console.error('Error processing contact form:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+      message: 'An unexpected error occurred. Please try again later.'
+    });
+  }
+});
+
+// NEWSLETTER ENDPOINT
+app.post('/newsletter', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    if (!email || !email.trim()) {
+      return res.status(400).json({
+        success: false,
+        error: 'Email is required',
+        message: 'Please provide an email address'
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid email format',
+        message: 'Please provide a valid email address'
+      });
+    }
+
+    const mailOptions = {
+      from: `"${process.env.COMPANY_NAME}" <${process.env.SENDER_EMAIL}>`,
+      to: email,
+      subject: `Welcome to ${process.env.COMPANY_NAME} Newsletter!`,
+      html: getNewsletterEmailContent(email)
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    // Also notify admin about new subscription
+    const adminNotification = {
+      from: `"${process.env.COMPANY_NAME}" <${process.env.SENDER_EMAIL}>`,
+      to: process.env.SUPPORT_EMAIL,
+      subject: '📧 New Newsletter Subscription',
+      html: `
+        ${getEmailHeader()}
+        <div style="padding: 40px 30px; background-color: #ffffff; font-family: 'Poppins', sans-serif;">
+          <h2 style="color: #1e40af; margin: 0 0 20px 0;">New Newsletter Subscriber</h2>
+          <p style="color: #1f2937; margin-bottom: 10px;">Email: <strong>${email}</strong></p>
+          <p style="color: #64748b; font-size: 14px;">Subscribed on: ${new Date().toLocaleString()}</p>
+        </div>
+        ${getEmailFooter()}
+      `
+    };
+
+    try {
+      await transporter.sendMail(adminNotification);
+    } catch (error) {
+      console.error('Error sending admin notification:', error);
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Successfully subscribed to newsletter!'
+    });
+
+  } catch (error) {
+    console.error('Error processing newsletter subscription:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+      message: 'Failed to subscribe. Please try again later.'
+    });
+  }
+});
+
+// CAREER APPLICATION ENDPOINT
+app.post('/careers', async (req, res) => {
+  try {
+    const formData = req.body;
+
+    const requiredFields = ['name', 'email', 'phone', 'experience', 'portfolio', 'coverLetter'];
+    const missingFields = requiredFields.filter(field => !formData[field]?.trim());
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        success: false,
+        error: `Missing required fields: ${missingFields.join(', ')}`,
+        message: 'Please fill in all required fields'
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid email format',
+        message: 'Please provide a valid email address'
+      });
+    }
+
+    const applicationId = generateInquiryId().replace('TF', 'APP');
+
+    // Send confirmation email to applicant
+    const applicantMailOptions = {
+      from: `"${process.env.COMPANY_NAME} Careers" <${process.env.SENDER_EMAIL}>`,
+      to: formData.email,
+      subject: `Application Received - ${process.env.COMPANY_NAME} [${applicationId}]`,
+      html: getApplicantEmailContent(formData, applicationId)
+    };
+
+    // Send notification to admin
+    const adminMailOptions = {
+      from: `"${process.env.COMPANY_NAME} Careers" <${process.env.SENDER_EMAIL}>`,
+      to: process.env.SUPPORT_EMAIL,
+      subject: `🎯 New Job Application - ${formData.experience} Experience [${applicationId}]`,
+      html: getAdminCareerEmailContent(formData, applicationId)
+    };
+
+    let applicantEmailSent = false;
+    let adminEmailSent = false;
+
+    try {
+      await transporter.sendMail(applicantMailOptions);
+      applicantEmailSent = true;
+      console.log('Applicant confirmation email sent successfully');
+    } catch (error) {
+      console.error('Error sending applicant email:', error);
+    }
+
+    try {
+      await transporter.sendMail(adminMailOptions);
+      adminEmailSent = true;
+      console.log('Admin notification email sent successfully');
+    } catch (error) {
+      console.error('Error sending admin email:', error);
+    }
+
+    res.status(200).json({
+      success: true,
+      application_id: applicationId,
+      message: 'Application submitted successfully! We will review and get back to you within 5-7 business days.',
+      details: {
+        applicant_email_sent: applicantEmailSent,
+        admin_email_sent: adminEmailSent
+      }
+    });
+
+  } catch (error) {
+    console.error('Error processing career application:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Internal server error',
+      message: 'Failed to submit application. Please try again later.'
+    });
+  }
+});
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    service: 'TechFlow Contact API with Nodemailer',
+    email_service: 'available'
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Email service configured with: ${process.env.SENDER_EMAIL}`);
+});
