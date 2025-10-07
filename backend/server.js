@@ -67,26 +67,9 @@ const getEmailHeader = () => `
 `;
 
 const getEmailFooter = () => `
-    <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px 20px; border-radius: 0 0 12px 12px; border-top: 1px solid #e2e8f0;">
-      <div style="text-align: center; margin-bottom: 20px;">
-        <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;">Stay Connected</h3>
-        <div style="margin-bottom: 15px; font-family: 'Poppins', sans-serif;">
-          <span style="display: inline-block; margin: 0 10px; color: #64748b; font-size: 14px;">
-            📧 ${process.env.SUPPORT_EMAIL}
-          </span>
-          <span style="display: inline-block; margin: 0 10px; color: #64748b; font-size: 14px;">
-            📞 ${process.env.PHONE_NUMBER}
-          </span>
-        </div>
-        <div style="margin-bottom: 15px;">
-          <a href="${process.env.WEBSITE_URL}" style="color: #2563eb; text-decoration: none; font-size: 14px; font-family: 'Poppins', sans-serif;">
-            🌐 Visit Our Website
-          </a>
-        </div>
-      </div>
-      
-      <div style="text-align: center; padding-top: 20px; border-top: 1px solid #e2e8f0;">
-        <p style="color: #94a3b8; font-size: 12px; margin: 0; line-height: 1.5; font-family: 'Poppins', sans-serif;">
+    <div style="background: #f5f5f5; padding: 30px 20px; border-radius: 0 0 12px 12px; border-top: 1px solid #e0e0e0;">
+      <div style="text-align: center; padding-top: 0;">
+        <p style="color: #666666; font-size: 12px; margin: 0; line-height: 1.5; font-family: 'Poppins', sans-serif;">
           © ${new Date().getFullYear()} ${process.env.COMPANY_NAME}. All rights reserved.<br>
           This email was sent because you contacted us through our website.
         </p>
@@ -102,64 +85,64 @@ const getApplicantEmailContent = (formData, applicationId) => {
     
     <div style="padding: 40px 30px; background-color: #ffffff; font-family: 'Poppins', 'Calibri', sans-serif;">
       <div style="text-align: center; margin-bottom: 30px;">
-        <div style="background: linear-gradient(135deg, #dbeafe 0%, #d1fae5 100%); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
-          <h2 style="color: #1e40af; margin: 0 0 10px 0; font-size: 24px; font-weight: 700; font-family: 'Poppins', sans-serif;">
+        <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px solid #e0e0e0;">
+          <h2 style="color: #000000; margin: 0 0 10px 0; font-size: 24px; font-weight: 700; font-family: 'Poppins', sans-serif;">
             🎉 Application Received!
           </h2>
-          <p style="color: #1f2937; margin: 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 400;">
+          <p style="color: #333333; margin: 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 400;">
             Thank you for applying to join our team, ${formData.name}!
           </p>
         </div>
       </div>
 
-      <div style="background: #f8fafc; padding: 25px; border-radius: 12px; margin-bottom: 30px; border-left: 4px solid #2563eb;">
-        <h3 style="color: #1e40af; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">
+      <div style="background: #fafafa; padding: 25px; border-radius: 12px; margin-bottom: 30px; border-left: 4px solid #333333;">
+        <h3 style="color: #000000; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">
           📋 Your Application Details
         </h3>
         <table style="width: 100%; border-collapse: collapse; font-family: 'Poppins', sans-serif;">
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500; width: 30%;">Application ID:</td>
-            <td style="padding: 8px 0; color: #1e293b; font-weight: 700;">${applicationId}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500; width: 30%;">Application ID:</td>
+            <td style="padding: 8px 0; color: #000000; font-weight: 700;">${applicationId}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Name:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.name}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Name:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.name}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Email:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.email}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Email:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.email}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Phone:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.phone}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Phone:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.phone}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Experience:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.experience}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Experience:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.experience}</td>
           </tr>
         </table>
       </div>
 
-      <div style="background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
-        <h3 style="color: #1e40af; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">🚀 What Happens Next?</h3>
+      <div style="background: #ffffff; padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #e0e0e0;">
+        <h3 style="color: #000000; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">🚀 What Happens Next?</h3>
         <div style="space-y: 12px;">
           <div style="display: flex; align-items: start; margin-bottom: 12px;">
-            <span style="background: #2563eb; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">1</span>
-            <span style="color: #1f2937; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Our HR team will review your application within 3-5 business days</span>
+            <span style="background: #333333; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">1</span>
+            <span style="color: #333333; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Our HR team will review your application within 3-5 business days</span>
           </div>
           <div style="display: flex; align-items: start; margin-bottom: 12px;">
-            <span style="background: #14b8a6; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">2</span>
-            <span style="color: #1f2937; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">If shortlisted, we'll contact you for an interview</span>
+            <span style="background: #666666; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">2</span>
+            <span style="color: #333333; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">If shortlisted, we'll contact you for an interview</span>
           </div>
           <div style="display: flex; align-items: start; margin-bottom: 12px;">
-            <span style="background: #f59e0b; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">3</span>
-            <span style="color: #1f2937; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Complete the interview process and await our decision</span>
+            <span style="background: #999999; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">3</span>
+            <span style="color: #333333; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Complete the interview process and await our decision</span>
           </div>
         </div>
       </div>
 
-      <div style="text-align: center; padding: 20px; background: #f1f5f9; border-radius: 12px;">
-        <p style="color: #64748b; font-size: 14px; margin: 0; font-family: 'Poppins', sans-serif;">
+      <div style="text-align: center; padding: 20px; background: #f5f5f5; border-radius: 12px;">
+        <p style="color: #666666; font-size: 14px; margin: 0; font-family: 'Poppins', sans-serif;">
           Questions? Contact us at ${process.env.SUPPORT_EMAIL}
         </p>
       </div>
@@ -174,60 +157,60 @@ const getAdminCareerEmailContent = (formData, applicationId) => {
     ${getEmailHeader()}
     
     <div style="padding: 40px 30px; background-color: #ffffff; font-family: 'Poppins', 'Calibri', sans-serif;">
-      <div style="background: #fef3c7; padding: 20px; border-radius: 12px; margin-bottom: 25px; text-align: center;">
-        <h2 style="color: #92400e; margin: 0 0 10px 0; font-size: 22px; font-weight: 700; font-family: 'Poppins', sans-serif;">
+      <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; margin-bottom: 25px; text-align: center; border: 1px solid #e0e0e0;">
+        <h2 style="color: #000000; margin: 0 0 10px 0; font-size: 22px; font-weight: 700; font-family: 'Poppins', sans-serif;">
           🎯 New Job Application Received!
         </h2>
-        <p style="color: #92400e; margin: 0; font-size: 14px; opacity: 0.9; font-family: 'Poppins', sans-serif;">
+        <p style="color: #666666; margin: 0; font-size: 14px; font-family: 'Poppins', sans-serif;">
           Application ID: ${applicationId}
         </p>
       </div>
 
-      <div style="background: #f8fafc; padding: 25px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #2563eb;">
-        <h3 style="color: #1e40af; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">👤 Candidate Information</h3>
+      <div style="background: #fafafa; padding: 25px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #333333;">
+        <h3 style="color: #000000; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">👤 Candidate Information</h3>
         <table style="width: 100%; border-collapse: collapse; font-family: 'Poppins', sans-serif;">
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500; width: 25%;">Name:</td>
-            <td style="padding: 8px 0; color: #1e293b; font-weight: 700;">${formData.name}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500; width: 25%;">Name:</td>
+            <td style="padding: 8px 0; color: #000000; font-weight: 700;">${formData.name}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Email:</td>
-            <td style="padding: 8px 0; color: #1e293b;"><a href="mailto:${formData.email}" style="color: #2563eb; text-decoration: none;">${formData.email}</a></td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Email:</td>
+            <td style="padding: 8px 0; color: #333333;"><a href="mailto:${formData.email}" style="color: #2563eb; text-decoration: none;">${formData.email}</a></td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Phone:</td>
-            <td style="padding: 8px 0; color: #1e293b;"><a href="tel:${formData.phone}" style="color: #2563eb; text-decoration: none;">${formData.phone}</a></td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Phone:</td>
+            <td style="padding: 8px 0; color: #333333;"><a href="tel:${formData.phone}" style="color: #2563eb; text-decoration: none;">${formData.phone}</a></td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Experience:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.experience}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Experience:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.experience}</td>
           </tr>
         </table>
       </div>
 
-      <div style="background: #fefce8; padding: 25px; border-radius: 12px; margin-bottom: 25px; border-left: 4px solid #eab308;">
-        <h3 style="color: #a16207; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">💼 Professional Details</h3>
-        <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-          <p style="color: #64748b; font-size: 14px; margin: 0 0 5px 0; font-family: 'Poppins', sans-serif;">Portfolio:</p>
-          <p style="color: #1e293b; margin: 0; font-family: 'Poppins', sans-serif;"><a href="${formData.portfolio}" style="color: #2563eb;">${formData.portfolio}</a></p>
+      <div style="background: #ffffff; padding: 25px; border-radius: 12px; margin-bottom: 25px; border: 1px solid #e0e0e0;">
+        <h3 style="color: #000000; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">💼 Professional Details</h3>
+        <div style="background: #fafafa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+          <p style="color: #666666; font-size: 14px; margin: 0 0 5px 0; font-family: 'Poppins', sans-serif;">Portfolio:</p>
+          <p style="color: #333333; margin: 0; font-family: 'Poppins', sans-serif;"><a href="${formData.portfolio}" style="color: #2563eb;">${formData.portfolio}</a></p>
         </div>
-        <div style="background: white; padding: 15px; border-radius: 8px;">
-          <p style="color: #64748b; font-size: 14px; margin: 0 0 5px 0; font-family: 'Poppins', sans-serif;">Cover Letter:</p>
-          <p style="color: #1e293b; margin: 0; line-height: 1.6; font-family: 'Poppins', sans-serif;">${formData.coverLetter}</p>
+        <div style="background: #fafafa; padding: 15px; border-radius: 8px;">
+          <p style="color: #666666; font-size: 14px; margin: 0 0 5px 0; font-family: 'Poppins', sans-serif;">Cover Letter:</p>
+          <p style="color: #333333; margin: 0; line-height: 1.6; font-family: 'Poppins', sans-serif;">${formData.coverLetter}</p>
         </div>
       </div>
 
-      <div style="text-align: center; padding: 25px; background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border-radius: 12px;">
-        <h3 style="color: #1e40af; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">⚡ Quick Actions</h3>
+      <div style="text-align: center; padding: 25px; background: #f5f5f5; border-radius: 12px;">
+        <h3 style="color: #000000; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">⚡ Quick Actions</h3>
         <div>
-          <a href="mailto:${formData.email}" style="background: #2563eb; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
+          <a href="mailto:${formData.email}" style="background: #333333; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
             📧 Reply to Candidate
           </a>
-          <a href="tel:${formData.phone}" style="background: #22c55e; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
+          <a href="tel:${formData.phone}" style="background: #666666; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
             📞 Call Candidate
           </a>
         </div>
-        <p style="color: #64748b; font-size: 12px; margin: 15px 0 0 0; font-family: 'Poppins', sans-serif;">
+        <p style="color: #999999; font-size: 12px; margin: 15px 0 0 0; font-family: 'Poppins', sans-serif;">
           Application received on ${new Date().toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' })}
         </p>
       </div>
@@ -244,69 +227,69 @@ const getClientEmailContent = (formData, inquiryId) => {
     
     <div style="padding: 40px 30px; background-color: #ffffff; font-family: 'Poppins', 'Calibri', sans-serif;">
       <div style="text-align: center; margin-bottom: 30px;">
-        <div style="background: linear-gradient(135deg, #dbeafe 0%, #d1fae5 100%); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
-          <h2 style="color: #1e40af; margin: 0 0 10px 0; font-size: 24px; font-weight: 700; font-family: 'Poppins', sans-serif;">
+        <div style="background: #f5f5f5; padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 1px solid #e0e0e0;">
+          <h2 style="color: #000000; margin: 0 0 10px 0; font-size: 24px; font-weight: 700; font-family: 'Poppins', sans-serif;">
             🎉 Thank You, ${formData.name}!
           </h2>
-          <p style="color: #1f2937; margin: 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 400;">
+          <p style="color: #333333; margin: 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 400;">
             We've received your inquiry and our team is excited to help you achieve your goals.
           </p>
         </div>
       </div>
 
-      <div style="background: #f8fafc; padding: 25px; border-radius: 12px; margin-bottom: 30px; border-left: 4px solid #2563eb;">
-        <h3 style="color: #1e40af; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">
+      <div style="background: #fafafa; padding: 25px; border-radius: 12px; margin-bottom: 30px; border-left: 4px solid #333333;">
+        <h3 style="color: #000000; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">
           📋 Your Inquiry Details
         </h3>
         <table style="width: 100%; border-collapse: collapse; font-family: 'Poppins', sans-serif;">
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500; width: 30%;">Inquiry ID:</td>
-            <td style="padding: 8px 0; color: #1e293b; font-weight: 700;">${inquiryId}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500; width: 30%;">Inquiry ID:</td>
+            <td style="padding: 8px 0; color: #000000; font-weight: 700;">${inquiryId}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Service:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.service}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Service:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.service}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Company:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.company || 'Not specified'}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Company:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.company || 'Not specified'}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Budget:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.budget || 'Not specified'}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Budget:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.budget || 'Not specified'}</td>
           </tr>
           <tr>
-            <td style="padding: 8px 0; color: #64748b; font-weight: 500;">Timeline:</td>
-            <td style="padding: 8px 0; color: #1e293b;">${formData.timeline || 'Not specified'}</td>
+            <td style="padding: 8px 0; color: #666666; font-weight: 500;">Timeline:</td>
+            <td style="padding: 8px 0; color: #333333;">${formData.timeline || 'Not specified'}</td>
           </tr>
         </table>
       </div>
 
-      <div style="background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); padding: 25px; border-radius: 12px; margin-bottom: 30px;">
-        <h3 style="color: #1e40af; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">🚀 What Happens Next?</h3>
+      <div style="background: #ffffff; padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #e0e0e0;">
+        <h3 style="color: #000000; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">🚀 What Happens Next?</h3>
         <div style="space-y: 12px;">
           <div style="display: flex; align-items: start; margin-bottom: 12px;">
-            <span style="background: #2563eb; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">1</span>
-            <span style="color: #1f2937; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Our team will review your requirements within 2-4 hours</span>
+            <span style="background: #333333; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">1</span>
+            <span style="color: #333333; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Our team will review your requirements within 2-4 hours</span>
           </div>
           <div style="display: flex; align-items: start; margin-bottom: 12px;">
-            <span style="background: #14b8a6; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">2</span>
-            <span style="color: #1f2937; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">We'll schedule a consultation call within 24 hours</span>
+            <span style="background: #666666; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">2</span>
+            <span style="color: #333333; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">We'll schedule a consultation call within 24 hours</span>
           </div>
           <div style="display: flex; align-items: start; margin-bottom: 12px;">
-            <span style="background: #f59e0b; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">3</span>
-            <span style="color: #1f2937; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Receive a detailed proposal tailored to your needs</span>
+            <span style="background: #999999; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">3</span>
+            <span style="color: #333333; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Receive a detailed proposal tailored to your needs</span>
           </div>
         </div>
       </div>
 
-      <div style="text-align: center; padding: 20px; background: #f1f5f9; border-radius: 12px;">
-        <h3 style="color: #1e40af; margin: 0 0 15px 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;">Need Immediate Assistance?</h3>
+      <div style="text-align: center; padding: 20px; background: #f5f5f5; border-radius: 12px;">
+        <h3 style="color: #000000; margin: 0 0 15px 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;">Need Immediate Assistance?</h3>
         <div style="margin-bottom: 15px;">
-          <a href="tel:${process.env.PHONE_NUMBER}" style="background: #2563eb; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
+          <a href="tel:${process.env.PHONE_NUMBER}" style="background: #333333; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
             📞 Call Us
           </a>
-          <a href="mailto:${process.env.SUPPORT_EMAIL}" style="background: white; color: #2563eb; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; border: 2px solid #2563eb; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
+          <a href="mailto:${process.env.SUPPORT_EMAIL}" style="background: white; color: #333333; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; border: 2px solid #333333; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
             ✉️ Email Us
           </a>
         </div>
@@ -319,13 +302,13 @@ const getClientEmailContent = (formData, inquiryId) => {
 
 const getAdminEmailContent = (formData, inquiryId) => {
   const priorityLevels = {
-    'Less then ₹3,000': { level: 'Medium', icon: '🟡', bgColor: '#fef3c7', textColor: '#92400e' },
-    '₹3,000 - ₹5,000': { level: 'Medium', icon: '🟡', bgColor: '#fef3c7', textColor: '#92400e' },
-    '₹5,000 - ₹10,000': { level: 'High', icon: '🟠', bgColor: '#fed7aa', textColor: '#9a3412' },
-    '₹10,000+': { level: 'High', icon: '🔴', bgColor: '#fee2e2', textColor: '#dc2626' },
-    'Not sure yet': { level: 'Medium', icon: '🟡', bgColor: '#fef3c7', textColor: '#92400e' }
+    'Less then ₹3,000': { level: 'Medium', icon: '🟡', bgColor: '#f5f5f5', textColor: '#666666' },
+    '₹3,000 - ₹5,000': { level: 'Medium', icon: '🟡', bgColor: '#f5f5f5', textColor: '#666666' },
+    '₹5,000 - ₹10,000': { level: 'High', icon: '🟠', bgColor: '#e0e0e0', textColor: '#333333' },
+    '₹10,000+': { level: 'High', icon: '🔴', bgColor: '#d0d0d0', textColor: '#000000' },
+    'Not sure yet': { level: 'Medium', icon: '🟡', bgColor: '#f5f5f5', textColor: '#666666' }
   };
-
+  
   const priority = priorityLevels[formData.budget] || { level: 'Medium', icon: '🟡', bgColor: '#fef3c7', textColor: '#92400e' };
 
   return `
