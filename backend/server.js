@@ -239,7 +239,7 @@ const getClientEmailContent = (formData, inquiryId) => {
 
       <div style="background: #fafafa; padding: 25px; border-radius: 12px; margin-bottom: 30px; border-left: 4px solid #333333;">
         <h3 style="color: #000000; margin: 0 0 20px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">
-          📋 Your Inquiry Details
+          Your Inquiry Details
         </h3>
         <table style="width: 100%; border-collapse: collapse; font-family: 'Poppins', sans-serif;">
           <tr>
@@ -266,7 +266,7 @@ const getClientEmailContent = (formData, inquiryId) => {
       </div>
 
       <div style="background: #ffffff; padding: 25px; border-radius: 12px; margin-bottom: 30px; border: 1px solid #e0e0e0;">
-        <h3 style="color: #000000; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">🚀 What Happens Next?</h3>
+        <h3 style="color: #000000; margin: 0 0 15px 0; font-size: 18px; font-family: 'Poppins', sans-serif; font-weight: 600;">What Happens Next?</h3>
         <div style="space-y: 12px;">
           <div style="display: flex; align-items: start; margin-bottom: 12px;">
             <span style="background: #333333; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">1</span>
@@ -280,18 +280,6 @@ const getClientEmailContent = (formData, inquiryId) => {
             <span style="background: #999999; color: white; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px; flex-shrink: 0; font-family: 'Poppins', sans-serif;">3</span>
             <span style="color: #333333; font-size: 14px; line-height: 1.5; font-family: 'Poppins', sans-serif;">Receive a detailed proposal tailored to your needs</span>
           </div>
-        </div>
-      </div>
-
-      <div style="text-align: center; padding: 20px; background: #f5f5f5; border-radius: 12px;">
-        <h3 style="color: #000000; margin: 0 0 15px 0; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600;">Need Immediate Assistance?</h3>
-        <div style="margin-bottom: 15px;">
-          <a href="tel:${process.env.PHONE_NUMBER}" style="background: #333333; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
-            📞 Call Us
-          </a>
-          <a href="mailto:${process.env.SUPPORT_EMAIL}" style="background: white; color: #333333; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; display: inline-block; border: 2px solid #333333; margin: 0 8px 8px 0; font-family: 'Poppins', sans-serif;">
-            ✉️ Email Us
-          </a>
         </div>
       </div>
     </div>
@@ -308,7 +296,7 @@ const getAdminEmailContent = (formData, inquiryId) => {
     '₹10,000+': { level: 'High', icon: '🔴', bgColor: '#d0d0d0', textColor: '#000000' },
     'Not sure yet': { level: 'Medium', icon: '🟡', bgColor: '#f5f5f5', textColor: '#666666' }
   };
-  
+
   const priority = priorityLevels[formData.budget] || { level: 'Medium', icon: '🟡', bgColor: '#fef3c7', textColor: '#92400e' };
 
   return `
